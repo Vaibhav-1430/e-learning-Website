@@ -1,6 +1,6 @@
 # E-Learning Website
 
-This is a customizable e-learning platform built using **HTML, CSS, JavaScript, PHP, and SQL**.  
+This is a customizable e-learning platform built using **HTML, CSS, JavaScript
 Features:
 - User authentication and course management  
 - Admin dashboard for orders and content  
