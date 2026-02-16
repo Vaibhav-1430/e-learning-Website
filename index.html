@@ -1923,6 +1923,11 @@
     function getLocalResponse(question) {
       const lowerQuestion = question.toLowerCase();
       
+      // Check if user is asking for a complete learning module
+      if (lowerQuestion.includes('teach me') || lowerQuestion.includes('learn') || lowerQuestion.includes('explain') || lowerQuestion.includes('tutorial')) {
+        return generateLearningModule(question);
+      }
+      
       // Hindi responses
       if (currentLanguage === 'hindi') {
         if (lowerQuestion.includes('गणित') || lowerQuestion.includes('math')) {
@@ -1939,25 +1944,49 @@
       
       // English responses with detailed explanations
       if (lowerQuestion.includes('pythagoras')) {
-        return 'The Pythagorean theorem states that in a right-angled triangle, the square of the hypotenuse (longest side) equals the sum of squares of the other two sides: a² + b² = c². This fundamental theorem is used in geometry, trigonometry, and many real-world applications like construction and navigation. Would you like to see examples or practice problems?';
+        return '📐 <strong>Pythagorean Theorem</strong><br><br>The Pythagorean theorem states that in a right-angled triangle, the square of the hypotenuse (longest side) equals the sum of squares of the other two sides: <strong>a² + b² = c²</strong><br><br>This fundamental theorem is used in geometry, trigonometry, and many real-world applications like construction and navigation.<br><br>Would you like to see examples or practice problems?';
       }
       if (lowerQuestion.includes('photosynthesis')) {
-        return 'Photosynthesis is the process by which plants convert light energy into chemical energy. Plants use sunlight, water (H₂O), and carbon dioxide (CO₂) to produce glucose (C₆H₁₂O₆) and oxygen (O₂). The equation is: 6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂. This process occurs in chloroplasts and is essential for life on Earth!';
+        return '🌱 <strong>Photosynthesis</strong><br><br>Photosynthesis is the process by which plants convert light energy into chemical energy. Plants use sunlight, water (H₂O), and carbon dioxide (CO₂) to produce glucose (C₆H₁₂O₆) and oxygen (O₂).<br><br><strong>The equation:</strong> 6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂<br><br>This process occurs in chloroplasts and is essential for life on Earth!';
       }
       if (lowerQuestion.includes('gravity')) {
-        return 'Gravity is a fundamental force that attracts objects with mass toward each other. Newton\'s law states F = G(m₁m₂)/r², where G is the gravitational constant. On Earth, gravity accelerates objects at 9.8 m/s². This force keeps planets in orbit and gives us weight. Einstein later described gravity as the curvature of spacetime!';
+        return '🌍 <strong>Gravity</strong><br><br>Gravity is a fundamental force that attracts objects with mass toward each other. Newton\'s law states <strong>F = G(m₁m₂)/r²</strong>, where G is the gravitational constant.<br><br>On Earth, gravity accelerates objects at 9.8 m/s². This force keeps planets in orbit and gives us weight. Einstein later described gravity as the curvature of spacetime!';
       }
       if (lowerQuestion.includes('python')) {
-        return 'Python is a versatile, beginner-friendly programming language. It\'s used for web development, data science, AI, automation, and more. Key features: easy syntax, large library ecosystem, and strong community support. Start with basics like variables, loops, and functions. Would you like to learn specific Python concepts?';
+        return '💻 <strong>Python Programming</strong><br><br>Python is a versatile, beginner-friendly programming language. It\'s used for web development, data science, AI, automation, and more.<br><br><strong>Key features:</strong> easy syntax, large library ecosystem, and strong community support.<br><br>Start with basics like variables, loops, and functions. Would you like to learn specific Python concepts?';
       }
       if (lowerQuestion.includes('math') || lowerQuestion.includes('algebra')) {
-        return 'Mathematics is the language of patterns and logic! Algebra helps us solve equations and understand relationships between variables. Key concepts include: variables (x, y), equations (2x + 3 = 7), functions, and graphing. What specific math topic interests you?';
+        return '📐 <strong>Mathematics</strong><br><br>Mathematics is the language of patterns and logic! Algebra helps us solve equations and understand relationships between variables.<br><br><strong>Key concepts:</strong> variables (x, y), equations (2x + 3 = 7), functions, and graphing.<br><br>What specific math topic interests you?';
       }
       if (lowerQuestion.includes('quiz')) {
         return 'Great! I can generate a quiz for you on any topic. Just tell me what subject you\'d like to be tested on, and I\'ll create questions to help you practice and reinforce your learning!';
       }
       
       return 'That\'s an interesting question! I\'m here to help you understand any topic deeply. Could you provide more details or specify which aspect you\'d like to explore? I can explain concepts, provide examples, show videos, or create quizzes to test your knowledge!';
+    }
+
+    // Generate structured learning module
+    function generateLearningModule(question) {
+      const topic = extractTopic(question);
+      
+      return `
+        <strong>📚 Complete Learning Module: ${topic}</strong><br><br>
+        
+        I'll create a comprehensive learning experience for you!<br><br>
+        
+        <strong>What I'll cover:</strong><br>
+        👋 Friendly introduction to ${topic}<br>
+        📘 Step-by-step concept explanation<br>
+        💻 Practical examples<br>
+        🎥 Best YouTube video recommendations<br>
+        📝 Quizzes (Beginner, Intermediate, Expert)<br>
+        📚 Practice exercises<br>
+        🚀 Mini project idea<br><br>
+        
+        Let me search the web for the most current and accurate information about ${topic}...<br><br>
+        
+        <em>This will be a complete learning experience! Ready to learn? 🎓</em>
+      `;
     }
 
     function translateToHindi(text) {
