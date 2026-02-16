@@ -1,3 +1,4 @@
+<<<<<<< HEAD:e-learning website/README.md
 # 🎓 EduLearn - Smart E-Learning Platform
 
 A modern, interactive e-learning website with AI-powered tutoring, quiz system, and YouTube video integration.
@@ -201,3 +202,16 @@ Built with modern web technologies:
 **Happy Learning! 🎉**
 
 Start your educational journey today with EduLearn - where learning meets innovation!
+=======
+# E-Learning Website
+
+This is a customizable e-learning platform built using **HTML, CSS, JavaScript
+Features:
+- User authentication and course management  
+- Admin dashboard for orders and content  
+- Dynamic design with customizable color and fonts  
+- Responsive layout for mobile and desktop
+- It is also have Ai Tutor
+
+🚀 Developed by [Vaibhav Kumar Yadav](https://github.com/Vaibhav-1430)
+>>>>>>> 4c91a8a255aaa455d0ff8f3030452801fd674036:README.md
