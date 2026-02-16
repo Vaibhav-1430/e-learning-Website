@@ -1,604 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>EduVerse - Your Learning Journey</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduLearn - Smart Learning Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
     }
 
     :root {
-      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-      --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-      --dark-bg: #1a1a2e;
-      --card-bg: rgba(255, 255, 255, 0.95);
-      --text-primary: #2d3748;
-      --text-secondary: #718096;
-      --shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-      --shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.15);
-      --border-radius: 12px;
-      --transition-speed: 0.3s;
+      --primary: #6366f1;
+      --secondary: #8b5cf6;
+      --accent: #ec4899;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --text: #334155;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 10px 30px rgba(0,0,0,0.1);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+      --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     }
-    
-    /* Dark Mode Variables */
+
     [data-theme="dark"] {
-      --primary-gradient: linear-gradient(135deg, #434343 0%, #000000 100%);
-      --secondary-gradient: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
-      --card-bg: rgba(30, 30, 40, 0.95);
-      --text-primary: #e2e8f0;
-      --text-secondary: #a0aec0;
-      --shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      --shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.4);
-    }
-    
-    /* Dark Mode Toggle Styles */
-    .theme-toggle {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      transition: all 0.3s ease;
-    }
-    
-    .theme-toggle:hover {
-      color: #a67dff;
-    }
-    
-    /* Welcome Section Styles */
-    .welcome-title {
-      background: var(--primary-gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      text-align: center;
-      animation: fadeInUp 0.8s ease-out;
-    }
-    
-    .welcome-text {
-      color: var(--text-secondary);
-      font-size: 1.1rem;
-      line-height: 1.6;
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 2rem;
-      animation: fadeInUp 1s ease-out;
-    }
-    
-    /* Enhanced Form Elements */
-    .form-group {
-      margin-bottom: 1.5rem;
-      animation: fadeInUp 1.2s ease-out;
-    }
-    
-    .form-label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-      color: var(--text-primary);
-    }
-    
-    .enhanced-select {
-      width: 100%;
-      padding: 12px 15px;
-      border-radius: var(--border-radius);
-      border: 2px solid rgba(0, 0, 0, 0.1);
-      background-color: var(--card-bg);
-      color: var(--text-primary);
-      font-size: 1rem;
-      transition: all var(--transition-speed) ease;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 15px center;
-      background-size: 16px;
-    }
-    
-    .enhanced-select:focus {
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.25);
-      outline: none;
-    }
-    
-    [data-theme="dark"] .enhanced-select {
-      border-color: rgba(255, 255, 255, 0.1);
-      background-color: rgba(30, 30, 40, 0.8);
-    }
-    
-    /* Tutor Button Container */
-    .tutor-button-container {
-      text-align: center;
-      margin-top: 3rem;
-      animation: fadeInUp 1.4s ease-out;
-    }
-    
-    /* Button Animation */
-    .pulse-animation {
-      animation: pulse 2s infinite;
-      box-shadow: 0 0 0 0 rgba(79, 172, 254, 0.7);
-    }
-    
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(79, 172, 254, 0.7);
-      }
-      70% {
-        transform: scale(1.05);
-        box-shadow: 0 0 0 10px rgba(79, 172, 254, 0);
-      }
-      100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(79, 172, 254, 0);
-      }
-    }
-    
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    /* Gamification Notification Styles */
-    .points-notification, .level-notification {
-      position: fixed;
-      top: 80px;
-      right: -300px;
-      background: linear-gradient(135deg, #4CAF50, #2E7D32);
-      color: white;
-      padding: 15px 25px;
-      border-radius: 12px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1);
-      z-index: 1100;
-      font-weight: bold;
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      max-width: 300px;
-      transform: scale(0.9);
-      opacity: 0;
-      backdrop-filter: blur(5px);
-      border-left: 5px solid rgba(255,255,255,0.3);
-    }
-    
-    .level-notification {
-      background: linear-gradient(135deg, #FF9800, #F57C00);
-      top: 150px;
-    }
-    
-    .points-notification.show, .level-notification.show {
-      right: 30px;
-      transform: scale(1);
-      opacity: 1;
-      animation: notification-pulse 2s ease-in-out;
-    }
-    
-    @keyframes notification-pulse {
-      0% { box-shadow: 0 8px 25px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1); }
-      50% { box-shadow: 0 8px 30px rgba(var(--primary-rgb), 0.4), 0 0 0 1px rgba(255,255,255,0.2); }
-      100% { box-shadow: 0 8px 25px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1); }
-    }
-    
-    .points-notification i, .level-notification i {
-      margin-right: 12px;
-      font-size: 1.4em;
-      animation: notification-icon-bounce 1s ease infinite;
-    }
-    
-    @keyframes notification-icon-bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-    
-    /* User Stats Display */
-    .user-stats {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: rgba(255, 255, 255, 0.85);
-      padding: 15px 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.1);
-      z-index: 1000;
-      font-size: 0.95em;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-      transform: translateY(-100px);
-      animation: slideDown 0.5s ease forwards;
-    }
-    
-    @keyframes slideDown {
-      to { transform: translateY(0); }
-    }
-    
-    .user-stats:hover {
-      box-shadow: 0 6px 25px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.15);
-      transform: translateY(-3px) scale(1.02);
-    }
-    
-    [data-theme="dark"] .user-stats {
-      background: rgba(30, 30, 40, 0.85);
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.05);
-    }
-    
-    .user-level {
-      font-weight: bold;
-      color: #FF9800;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    
-    .user-level::before {
-      content: '🏆';
-      font-size: 1.1em;
-    }
-    
-    .user-points {
-      color: #4CAF50;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    
-    .user-points::before {
-      content: '✨';
-      font-size: 1.1em;
-    }
-    
-    .user-streak {
-      color: #2196F3;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    
-    .user-streak::before {
-      content: '🔥';
-      font-size: 1.1em;
-    }
-    
-    /* Leaderboard Styles */
-    .leaderboard-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(5px);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .leaderboard-modal.active {
-      opacity: 1;
-    }
-    
-    .leaderboard-content {
-      background: linear-gradient(135deg, var(--card-bg), rgba(255,255,255,0.05));
-      color: var(--text-primary);
-      width: 90%;
-      max-width: 550px;
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: var(--shadow), 0 0 30px rgba(var(--primary-rgb), 0.2);
-      position: relative;
-      max-height: 80vh;
-      overflow-y: auto;
-      transform: scale(0.9);
-      opacity: 0;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-    
-    .leaderboard-modal.active .leaderboard-content {
-      transform: scale(1);
-      opacity: 1;
-    }
-    
-    .leaderboard-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 25px;
-      border-bottom: 2px solid rgba(var(--primary-rgb), 0.2);
-      padding-bottom: 15px;
-    }
-    
-    .leaderboard-title {
-      font-size: 1.8rem;
-      font-weight: bold;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .leaderboard-title::before {
-      content: '🏆';
-      font-size: 1.5rem;
-      -webkit-text-fill-color: initial;
-    }
-    
-    .leaderboard-close {
-      font-size: 1.5rem;
-      cursor: pointer;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-      transition: all 0.2s ease;
-    }
-    
-    .leaderboard-close:hover {
-      background: rgba(255,0,0,0.1);
-      color: #ff5555;
-      transform: rotate(90deg);
-      color: var(--text-secondary);
-    }
-    
-    .leaderboard-list {
-      list-style: none;
-      padding: 0;
-      margin-top: 20px;
-    }
-    
-    .leaderboard-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-      margin-bottom: 12px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      transition: all 0.3s ease;
-      border-left: 4px solid transparent;
-      backdrop-filter: blur(5px);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-    
-    [data-theme="dark"] .leaderboard-item {
-      background: rgba(30, 30, 40, 0.2);
-    }
-    
-    .leaderboard-item:hover {
-      transform: translateX(5px);
-      border-left: 4px solid var(--primary);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-    
-    .leaderboard-rank {
-      font-weight: bold;
-      font-size: 1.2rem;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      margin-right: 15px;
-      background: rgba(var(--primary-rgb), 0.1);
-      color: var(--text-primary);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-    
-    .rank-1 {
-      background: linear-gradient(135deg, #FFD700, #FFA500);
-      color: #fff;
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-      transform: scale(1.1);
-      animation: pulse-gold 2s infinite;
-    }
-    
-    @keyframes pulse-gold {
-      0% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
-      50% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.8); }
-      100% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
-    }
-    
-    .rank-2 {
-      background: linear-gradient(135deg, #E0E0E0, #A0A0A0);
-      color: #fff;
-      box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
-    }
-    
-    .rank-3 {
-      background: linear-gradient(135deg, #CD7F32, #8B4513);
-      color: #fff;
-      box-shadow: 0 0 10px rgba(205, 127, 50, 0.5);
-    }
-    
-    .leaderboard-user {
-      flex-grow: 1;
-      font-weight: 500;
-      font-size: 1.1rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      max-width: 200px;
-    }
-    
-    .leaderboard-score {
-      font-weight: bold;
-      background: linear-gradient(135deg, #4CAF50, #2E7D32);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-size: 1.1rem;
-    }
-    
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
-    }
-    
-    .leaderboard-button {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      box-shadow: 0 5px 20px rgba(var(--primary-rgb), 0.4);
-      transform: translateY(0);
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      animation: float 3s ease-in-out infinite;
-      border: none;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      z-index: 1000;
-      transition: all 0.3s ease;
-    }
-    
-    .leaderboard-button:hover {
-      transform: scale(1.1);
-    }
-    
-    /* Chat Styles */
-    .chat-container {
-      display: flex;
-      flex-direction: column;
-      height: 400px;
-      border-radius: 10px;
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    
-    .chat-input {
-      display: flex;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.1);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .chat-input input {
-      flex: 1;
-      padding: 0.75rem 1rem;
-      border: none;
-      border-radius: 25px;
-      background: rgba(255, 255, 255, 0.9);
-      margin-right: 0.5rem;
-    }
-    
-    .message {
-      padding: 0.75rem 1rem;
-      border-radius: 10px;
-      max-width: 80%;
-      animation: fadeIn 0.3s ease;
-    }
-    
-    .user-message {
-      align-self: flex-end;
-      background: var(--primary-gradient);
-      color: white;
-    }
-    
-    .ai-message {
-      align-self: flex-start;
-      background: rgba(255, 255, 255, 0.9);
-      color: var(--text-primary);
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      --dark: #f8fafc;
+      --light: #0f172a;
+      --text: #e2e8f0;
+      --text-light: #94a3b8;
+      --border: #334155;
+      --shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
     body {
-      background: var(--primary-gradient);
-      min-height: 100vh;
-      color: var(--text-primary);
+      font-family: 'Poppins', sans-serif;
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.6;
       overflow-x: hidden;
-    }
-
-    /* Animated Background */
-    .bg-animation {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      opacity: 0.1;
-    }
-
-    .bg-animation::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23ffffff" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="%23ffffff" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-      animation: float 20s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(180deg); }
     }
 
     /* Navbar */
     .navbar {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      padding: 1rem 2rem;
-      position: sticky;
+      position: fixed;
       top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
       z-index: 1000;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
     }
 
-    .nav-content {
-      max-width: 1200px;
+    [data-theme="dark"] .navbar {
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .nav-container {
+      max-width: 1400px;
       margin: 0 auto;
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -606,97 +76,140 @@
 
     .logo {
       font-size: 1.8rem;
-      font-weight: 700;
-      background: var(--primary-gradient);
+      font-weight: 800;
+      background: var(--gradient-1);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
-    .logo i {
-      font-size: 2rem;
-      background: var(--primary-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .nav-links {
+    .nav-menu {
       display: flex;
       gap: 2rem;
       align-items: center;
+      list-style: none;
     }
 
     .nav-link {
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--text-primary);
+      color: var(--text);
       text-decoration: none;
-      padding: 0.5rem 1rem;
-      border-radius: 25px;
+      font-weight: 500;
       transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .nav-link::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: var(--primary-gradient);
-      transition: left 0.3s ease;
-      z-index: -1;
-      border-radius: 25px;
-    }
-
-    .nav-link:hover::before {
-      left: 0;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
     }
 
     .nav-link:hover {
+      background: var(--primary);
       color: white;
       transform: translateY(-2px);
     }
 
-    /* Main Container */
-    .main-container {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 2rem;
+    .theme-toggle {
+      background: var(--border);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
     }
 
-    .container {
-      background: var(--card-bg);
-      backdrop-filter: blur(20px);
-      border-radius: var(--border-radius);
-      padding: 3rem;
-      margin: 2rem 0;
+    .theme-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    /* Hero Section */
+    .hero {
+      margin-top: 80px;
+      padding: 4rem 2rem;
+      text-align: center;
+      background: var(--gradient-1);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,106.7C1248,96,1344,96,1392,96L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+      background-size: cover;
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      animation: fadeInUp 1s ease;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 1.2s ease;
+    }
+
+    .btn {
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--primary);
       box-shadow: var(--shadow);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all var(--transition-speed) ease;
-      animation: slideInUp 0.6s ease-out;
-      max-width: 1200px;
-      width: 100%;
-    }
-    
-    .container:hover {
-      box-shadow: var(--shadow-hover);
-      transform: translateY(-5px);
     }
 
-    .container:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-hover);
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
     }
 
-    @keyframes slideInUp {
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: var(--primary);
+    }
+
+    @keyframes fadeInUp {
       from {
         opacity: 0;
         transform: translateY(30px);
@@ -707,201 +220,96 @@
       }
     }
 
-    /* Typography */
-    h1, h2, h3 {
-      background: var(--primary-gradient);
+    /* Main Container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      background: var(--gradient-1);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 1rem;
     }
 
-    h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 1.5rem;
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
     }
 
-    h2 {
-      font-size: 2.5rem;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    h3 {
-      font-size: 1.5rem;
-      font-weight: 500;
-    }
-
-    p {
-      color: var(--text-secondary);
-      font-size: 1.1rem;
-      line-height: 1.6;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    /* Form Elements */
-    .form-group {
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    .form-label {
-      display: block;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 0.5rem;
-      font-size: 1.1rem;
-    }
-
-    select, input, textarea {
-      width: 100%;
-      max-width: 400px;
-      padding: 1rem 1.5rem;
-      border: 2px solid #e2e8f0;
-      border-radius: 15px;
-      font-size: 1rem;
-      background: rgba(255, 255, 255, 0.9);
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
       transition: all 0.3s ease;
-      outline: none;
+      border: 2px solid transparent;
     }
 
-    select:focus, input:focus, textarea:focus {
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-      transform: translateY(-2px);
+    [data-theme="dark"] .feature-card {
+      background: #1e293b;
     }
 
-    textarea {
-      height: 120px;
-      resize: vertical;
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
     }
 
-    /* Buttons */
-    .btn {
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: var(--border-radius);
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all var(--transition-speed) ease;
-      text-decoration: none;
-      display: inline-flex;
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--gradient-1);
+      border-radius: 15px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      letter-spacing: 0.5px;
-      gap: 10px;
-    }
-    
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: all 0.6s ease;
-    }
-    
-    .btn:hover::before {
-      left: 100%;
-    }
-    
-    .btn:active {
-      transform: translateY(2px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .btn-primary {
-      background: var(--primary-gradient);
+      font-size: 2rem;
       color: white;
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      margin-bottom: 1.5rem;
     }
 
-    .btn-primary:hover {
-      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-      transform: translateY(-2px);
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text);
     }
 
-    .btn-secondary {
-      background: var(--secondary-gradient);
-      color: white;
-      box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
+    .feature-card p {
+      color: var(--text-light);
+      line-height: 1.8;
     }
 
-    .btn-secondary:hover {
-      box-shadow: 0 6px 20px rgba(240, 147, 251, 0.6);
-      transform: translateY(-2px);
-    }
-    
-    .btn-success {
-      background: var(--success-gradient);
-      color: white;
-      box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
-    }
-    
-    .btn-success:hover {
-      box-shadow: 0 6px 20px rgba(79, 172, 254, 0.6);
-      transform: translateY(-2px);
-    }
-    
-    .btn-warning {
-      background: var(--warning-gradient);
-      color: white;
-      box-shadow: 0 4px 15px rgba(250, 112, 154, 0.4);
-    }
-    
-    .btn-warning:hover {
-      box-shadow: 0 6px 20px rgba(250, 112, 154, 0.6);
-      transform: translateY(-2px);
-    }
-
-    .btn-success {
-      background: var(--success-gradient);
-      color: white;
-    }
-
-    .btn-warning {
-      background: var(--warning-gradient);
-      color: white;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    }
-
-    .btn:active {
-      transform: translateY(-1px);
-    }
-
-    /* Subjects Grid */
-    .subjects {
+    /* Subjects Section */
+    .subjects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
-      margin: 2rem 0;
+      margin-bottom: 4rem;
     }
 
     .subject-card {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 20px;
+      background: white;
       padding: 2rem;
+      border-radius: 15px;
       text-align: center;
       cursor: pointer;
       transition: all 0.3s ease;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
+    }
+
+    [data-theme="dark"] .subject-card {
+      background: #1e293b;
     }
 
     .subject-card::before {
@@ -911,10 +319,9 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: var(--primary-gradient);
+      background: var(--gradient-1);
       opacity: 0;
       transition: opacity 0.3s ease;
-      z-index: -1;
     }
 
     .subject-card:hover::before {
@@ -922,1786 +329,1533 @@
     }
 
     .subject-card:hover {
-      transform: translateY(-10px) scale(1.05);
+      transform: scale(1.05);
       color: white;
     }
 
-    .subject-card:hover .subject-icon {
+    .subject-card:hover .subject-icon,
+    .subject-card:hover h3,
+    .subject-card:hover p {
       color: white;
+      position: relative;
+      z-index: 1;
     }
 
     .subject-icon {
       font-size: 3rem;
       margin-bottom: 1rem;
-      color: #667eea;
       transition: all 0.3s ease;
     }
 
-    .subject-title {
+    .subject-card h3 {
       font-size: 1.3rem;
-      font-weight: 600;
       margin-bottom: 0.5rem;
+      color: var(--text);
     }
 
-    .subject-desc {
+    .subject-card p {
+      color: var(--text-light);
       font-size: 0.9rem;
-      opacity: 0.8;
     }
 
-    /* Quiz Styles */
-    .quiz-container {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      padding: 2rem;
-      margin-top: 2rem;
-    }
-
-    .quiz-question {
+    /* AI Tutor Section */
+    .ai-tutor-section {
       background: white;
-      border-radius: 15px;
-      padding: 2rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .quiz-options {
-      display: grid;
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
-
-    .quiz-option {
-      background: rgba(255, 255, 255, 0.9);
-      border: 2px solid #e2e8f0;
-      border-radius: 15px;
-      padding: 1rem 1.5rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .quiz-option:hover {
-      border-color: #667eea;
-      background: rgba(102, 126, 234, 0.1);
-      transform: translateX(5px);
-    }
-
-    .quiz-option input[type="radio"] {
-      width: auto;
-      margin: 0;
-    }
-
-    /* Score Display */
-    .score-display {
-      text-align: center;
-      padding: 2rem;
-      background: var(--success-gradient);
-      color: white;
       border-radius: 20px;
-      margin: 2rem 0;
+      padding: 3rem;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 4rem;
     }
 
-    .score-number {
-      font-size: 3rem;
-      font-weight: 700;
+    [data-theme="dark"] .ai-tutor-section {
+      background: #1e293b;
+    }
+
+    .tutor-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .tutor-header h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      background: var(--gradient-2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .language-selector {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .lang-btn {
+      padding: 0.75rem 2rem;
+      border: 2px solid var(--primary);
+      background: transparent;
+      color: var(--primary);
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .lang-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .lang-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .chat-container {
+      background: var(--light);
+      border-radius: 15px;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 2px solid var(--border);
+    }
+
+    [data-theme="dark"] .chat-container {
+      background: #0f172a;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .message {
+      max-width: 70%;
+      padding: 1rem 1.5rem;
+      border-radius: 15px;
+      animation: slideIn 0.3s ease;
+    }
+
+    .user-message {
+      align-self: flex-end;
+      background: var(--gradient-1);
+      color: white;
+      border-radius: 15px 15px 0 15px;
+    }
+
+    .ai-message {
+      align-self: flex-start;
+      background: white;
+      color: var(--text);
+      border-radius: 15px 15px 15px 0;
+      box-shadow: var(--shadow);
+    }
+
+    [data-theme="dark"] .ai-message {
+      background: #1e293b;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .chat-input-container {
+      padding: 1.5rem;
+      background: white;
+      border-top: 2px solid var(--border);
+      display: flex;
+      gap: 1rem;
+    }
+
+    [data-theme="dark"] .chat-input-container {
+      background: #1e293b;
+    }
+
+    .chat-input {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      border: 2px solid var(--border);
+      border-radius: 50px;
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .chat-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+
+    .send-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--gradient-1);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .send-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Stats Section */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    [data-theme="dark"] .stat-card {
+      background: #1e293b;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-icon {
+      font-size: 2.5rem;
       margin-bottom: 1rem;
     }
 
-    /* Contact Form */
-    .contact-form {
-      display: grid;
-      gap: 1.5rem;
-      max-width: 600px;
-      margin: 0 auto;
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
     }
 
-    /* Progress Bar */
+    .stat-label {
+      color: var(--text-light);
+      font-size: 1rem;
+    }
+
+    /* Progress Section */
+    .progress-section {
+      background: white;
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 4rem;
+    }
+
+    [data-theme="dark"] .progress-section {
+      background: #1e293b;
+    }
+
+    .progress-item {
+      margin-bottom: 2rem;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
     .progress-bar {
-      width: 100%;
-      height: 8px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 4px;
+      height: 12px;
+      background: var(--border);
+      border-radius: 10px;
       overflow: hidden;
-      margin: 1rem 0;
     }
 
     .progress-fill {
       height: 100%;
-      background: var(--success-gradient);
-      transition: width 0.3s ease;
+      background: var(--gradient-1);
+      border-radius: 10px;
+      transition: width 1s ease;
     }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .nav-links {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .container {
-        padding: 2rem 1.5rem;
-        margin: 1rem;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-
-      h2 {
-        font-size: 1.8rem;
-      }
-
-      .subjects {
-        grid-template-columns: 1fr;
-      }
-
-      .main-container {
-        padding: 0 1rem;
-      }
+    /* Footer */
+    .footer {
+      background: var(--dark);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
     }
 
-    /* Modal Styles */
+    [data-theme="dark"] .footer {
+      background: #0f172a;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .social-link {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: var(--primary);
+      transform: translateY(-5px);
+    }
+
+    /* Modal */
     .modal {
+      display: none;
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      z-index: 1001;
-      display: flex;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
       justify-content: center;
       align-items: center;
     }
 
+    .modal.active {
+      display: flex;
+    }
+
     .modal-content {
-      background: var(--card-bg);
+      background: white;
+      padding: 3rem;
       border-radius: 20px;
-      padding: 2rem;
+      max-width: 600px;
       width: 90%;
-      max-width: 900px;
-      max-height: 90vh;
+      max-height: 80vh;
       overflow-y: auto;
-      box-shadow: var(--shadow-hover);
       position: relative;
+    }
+
+    [data-theme="dark"] .modal-content {
+      background: #1e293b;
     }
 
     .close-modal {
       position: absolute;
       top: 1rem;
-      right: 1.5rem;
+      right: 1rem;
       font-size: 2rem;
       cursor: pointer;
-      color: var(--text-secondary);
+      color: var(--text-light);
       transition: all 0.3s ease;
     }
 
     .close-modal:hover {
-      color: var(--text-primary);
-      transform: scale(1.2);
+      color: var(--danger);
+      transform: rotate(90deg);
     }
 
-    .subject-videos {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    
-    /* Achievement System Styles */
-    .achievements-panel {
-      position: fixed;
-      right: -300px;
-      top: 80px;
-      width: 300px;
-      background: var(--card-bg);
-      border-radius: 15px 0 0 15px;
-      box-shadow: var(--shadow);
-      padding: 1rem;
-      transition: right 0.3s ease;
-      z-index: 1000;
-    }
-    
-    .achievements-panel.visible {
-      right: 0;
-    }
-    
-    .achievements-toggle {
-      position: absolute;
-      left: -40px;
-      top: 10px;
-      width: 40px;
-      height: 40px;
-      background: var(--primary);
-      border-radius: 8px 0 0 8px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      color: white;
-      box-shadow: var(--shadow);
-    }
-    
-    .achievement-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-    }
-    
-    .achievement-item.unlocked {
-      background: rgba(var(--primary-rgb), 0.2);
-    }
-    
-    .achievement-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--secondary);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-right: 1rem;
-      color: white;
-      font-size: 1.2rem;
-    }
-    
-    .achievement-item.unlocked .achievement-icon {
-      background: var(--primary);
-    }
-    
-    .achievement-info {
-      flex: 1;
-    }
-    
-    .achievement-name {
-      font-weight: bold;
-      margin-bottom: 0.2rem;
-    }
-    
-    .achievement-description {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-    }
-    
-    .achievement-progress {
-      height: 6px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 3px;
-      margin-top: 0.3rem;
-      overflow: hidden;
-    }
-    
-    .achievement-progress-bar {
-      height: 100%;
-      background: var(--primary);
-      width: 0%;
-      transition: width 0.5s ease;
-    }
-    
-    .achievement-notification {
-      position: fixed;
-      bottom: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--primary);
-      color: white;
-      padding: 1rem 2rem;
-      border-radius: 10px;
-      box-shadow: var(--shadow-hover);
-      display: flex;
-      align-items: center;
-      z-index: 1002;
-      transition: bottom 0.5s ease;
-    }
-    
-    .achievement-notification.show {
-      bottom: 20px;
-    }
-    
-    .achievement-notification-icon {
-      font-size: 2rem;
-      margin-right: 1rem;
-    }
-    
-    .achievement-notification-text h3 {
-      margin: 0;
-      font-size: 1.2rem;
-    }
-    
-    .achievement-notification-text p {
-      margin: 0;
-      font-size: 0.9rem;
-      opacity: 0.8;
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .features-grid,
+      .subjects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .message {
+        max-width: 85%;
+      }
     }
 
-    /* Video Grid */
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .video-card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: all 0.3s ease;
+    /* Quiz Styles */
+    .quiz-option-btn:hover:not(:disabled) {
+      background: var(--primary) !important;
+      color: white !important;
+      border-color: var(--primary) !important;
+      transform: translateX(5px);
     }
 
     .video-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-hover);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg) !important;
     }
 
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-      height: 0;
-      overflow: hidden;
+    /* Action Buttons in Chat */
+    .action-buttons {
+      background: rgba(99, 102, 241, 0.1) !important;
+      border-left: 4px solid var(--primary);
     }
 
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .video-info {
-      padding: 1.5rem;
-    }
-
-    .video-title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: var(--text-primary);
-    }
-
-    .video-description {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      margin-bottom: 1rem;
-    }
-
-    .video-meta {
+    /* Loading Animation */
+    .typing-indicator {
       display: flex;
-      justify-content: space-between;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
+      gap: 5px;
+      padding: 1rem;
     }
 
-    /* Hidden Class */
-    .hidden {
-      display: none !important;
+    .typing-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      animation: typing 1.4s infinite;
+    }
+
+    .typing-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+      0%, 60%, 100% {
+        transform: translateY(0);
+      }
+      30% {
+        transform: translateY(-10px);
+      }
     }
   </style>
 </head>
 <body>
-  <div class="bg-animation"></div>
-  
-  <!-- User Stats Display -->
-  <div class="user-stats">
-    <div class="user-level"><i class="fas fa-star"></i> Level: <span id="userLevel">1</span></div>
-    <div class="user-points"><i class="fas fa-coins"></i> Points: <span id="userPoints">0</span></div>
-    <div class="user-streak"><i class="fas fa-fire"></i> Streak: <span id="userStreak">0</span> days</div>
-  </div>
-  
+
+  <!-- Navbar -->
   <nav class="navbar">
-    <div class="nav-content">
+    <div class="nav-container">
       <div class="logo">
         <i class="fas fa-graduation-cap"></i>
-        EduVerse
+        EduLearn
       </div>
-      <div class="nav-links">
-        <span class="nav-link" onclick="showTab('home')">
-          <i class="fas fa-home"></i> Home
-        </span>
-        <span class="nav-link" onclick="showTab('quiz')">
-          <i class="fas fa-question-circle"></i> Tests & Quizzes
-        </span>
-        <span class="nav-link" onclick="showTab('competitive')">
-          <i class="fas fa-trophy"></i> Competitive Exams
-        </span>
-        <span class="nav-link" onclick="showTab('video')">
-          <i class="fas fa-video"></i> Video Library
-        </span>
-        <span class="nav-link" onclick="showTab('contact')">
-          <i class="fas fa-envelope"></i> Contact Us
-        </span>
-        <span class="nav-link theme-toggle" onclick="toggleDarkMode()">
-          <i class="fas fa-moon"></i> <span id="theme-text">Dark Mode</span>
-        </span>
-      </div>
+      <ul class="nav-menu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#subjects" class="nav-link">Subjects</a></li>
+        <li><a href="#ai-tutor" class="nav-link">AI Tutor</a></li>
+        <li><a href="#progress" class="nav-link">Progress</a></li>
+      </ul>
+      <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+      </button>
     </div>
   </nav>
-  
-  <!-- Achievement System -->
-  <div class="achievements-panel" id="achievementsPanel">
-    <div class="achievements-toggle" onclick="toggleAchievements()">
-      <i class="fas fa-medal"></i>
-    </div>
-    <h3>Your Achievements</h3>
-    <div id="achievementsList">
-      <!-- Achievement items will be added here dynamically -->
-    </div>
-  </div>
-  
-  <!-- Achievement Notification -->
-  <div class="achievement-notification" id="achievementNotification">
-    <div class="achievement-notification-icon">
-      <i class="fas fa-award"></i>
-    </div>
-    <div class="achievement-notification-text">
-      <h3>Achievement Unlocked!</h3>
-      <p id="notificationText">You've earned a new achievement</p>
-    </div>
-  </div>
 
-  <!-- Home Section -->
-  <div class="main-container">
-    <div class="container" id="homeSection">
-      <h1 class="welcome-title">Welcome to Your Learning Journey</h1>
-      <p class="welcome-text">Discover a world of knowledge with our interactive learning platform. Choose your class and explore subjects designed to make learning fun and engaging.</p>
-      
-      <div class="form-group">
-        <label class="form-label">Choose Your Class</label>
-        <select id="classSelect" onchange="updateSubjects()" class="enhanced-select">
-          <option value="Class 1">Class 1</option>
-          <option value="Class 2">Class 2</option>
-          <option value="Class 3">Class 3</option>
-          <option value="Class 4">Class 4</option>
-          <option value="Class 5">Class 5</option>
-          <option value="Class 6">Class 6</option>
-          <option value="Class 7">Class 7</option>
-          <option value="Class 8">Class 8</option>
-        </select>
-      </div>
-      
-      <div class="subjects" id="subjects"></div>
-      
-      <div class="tutor-button-container">
-        <button class="btn btn-success pulse-animation" onclick="openAITutor()">
-          <i class="fas fa-robot"></i> Chat with AI Tutor
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Learn Smarter, Not Harder</h1>
+      <p>Experience personalized learning with AI-powered tutoring in multiple languages. Master any subject at your own pace.</p>
+      <div class="cta-buttons">
+        <button class="btn btn-primary" onclick="scrollToSection('ai-tutor')">
+          <i class="fas fa-robot"></i> Start Learning
+        </button>
+        <button class="btn btn-secondary" onclick="scrollToSection('subjects')">
+          <i class="fas fa-book"></i> Explore Subjects
         </button>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Subject Content Modal -->
-  <div id="subjectModal" class="modal hidden">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeSubjectModal()">&times;</span>
-      <h2 id="modalSubjectTitle"></h2>
-      <div id="modalSubjectContent"></div>
+  <!-- Features Section -->
+  <section class="container" id="features">
+    <h2 class="section-title">Why Choose EduLearn?</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h3>AI-Powered Learning</h3>
+        <p>Get personalized explanations and instant answers from our advanced AI tutor that adapts to your learning style.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-language"></i>
+        </div>
+        <h3>Multi-Language Support</h3>
+        <p>Learn in your preferred language - English, Hindi, or switch between them seamlessly for better understanding.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h3>Track Progress</h3>
+        <p>Monitor your learning journey with detailed analytics and insights to stay motivated and achieve your goals.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-clock"></i>
+        </div>
+        <h3>Learn Anytime</h3>
+        <p>Access quality education 24/7 from anywhere. Study at your own pace without any time constraints.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-certificate"></i>
+        </div>
+        <h3>Earn Certificates</h3>
+        <p>Complete courses and earn certificates to showcase your skills and boost your career prospects.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3>Community Support</h3>
+        <p>Join a vibrant community of learners, share knowledge, and grow together with peer support.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- AI Tutor Modal -->
-  <div id="aiTutorModal" class="modal hidden">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeAITutorModal()">&times;</span>
-      <h2><i class="fas fa-robot"></i> AI Tutor</h2>
+  <!-- Subjects Section -->
+  <section class="container" id="subjects">
+    <h2 class="section-title">Popular Subjects</h2>
+    <div class="subjects-grid">
+      <div class="subject-card" onclick="selectSubject('Mathematics')">
+        <div class="subject-icon">📐</div>
+        <h3>Mathematics</h3>
+        <p>Algebra, Calculus, Geometry</p>
+      </div>
+      <div class="subject-card" onclick="selectSubject('Science')">
+        <div class="subject-icon">🔬</div>
+        <h3>Science</h3>
+        <p>Physics, Chemistry, Biology</p>
+      </div>
+      <div class="subject-card" onclick="selectSubject('Programming')">
+        <div class="subject-icon">💻</div>
+        <h3>Programming</h3>
+        <p>Python, JavaScript, Java</p>
+      </div>
+      <div class="subject-card" onclick="selectSubject('English')">
+        <div class="subject-icon">📚</div>
+        <h3>English</h3>
+        <p>Grammar, Literature, Writing</p>
+      </div>
+      <div class="subject-card" onclick="selectSubject('History')">
+        <div class="subject-icon">🏛️</div>
+        <h3>History</h3>
+        <p>World History, Ancient Civilizations</p>
+      </div>
+      <div class="subject-card" onclick="selectSubject('Geography')">
+        <div class="subject-icon">🌍</div>
+        <h3>Geography</h3>
+        <p>Physical, Human, Environmental</p>
+      </div>
+      <div class="subject-card" onclick="selectSubject('Economics')">
+        <div class="subject-icon">💰</div>
+        <h3>Economics</h3>
+        <p>Micro, Macro, Business Studies</p>
+      </div>
+      <div class="subject-card" onclick="selectSubject('Arts')">
+        <div class="subject-icon">🎨</div>
+        <h3>Arts</h3>
+        <p>Drawing, Music, Design</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Tutor Section -->
+  <section class="container" id="ai-tutor">
+    <div class="ai-tutor-section">
+      <div class="tutor-header">
+        <h2>🤖 AI Tutor - Your Personal Learning Assistant</h2>
+        <p>Ask anything in English or Hindi and get instant, detailed explanations</p>
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 0.75rem 1.5rem; border-radius: 50px; display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);">
+          <i class="fas fa-globe"></i>
+          <strong>Web Search Enabled</strong> - Real-time internet search for accurate answers!
+        </div>
+      </div>
+
+      <div class="language-selector">
+        <button class="lang-btn active" onclick="setLanguage('english')" id="lang-english">
+          <i class="fas fa-globe"></i> English
+        </button>
+        <button class="lang-btn" onclick="setLanguage('hindi')" id="lang-hindi">
+          <i class="fas fa-language"></i> हिंदी
+        </button>
+      </div>
+
       <div class="chat-container">
-        <div id="chatMessages" class="chat-messages"></div>
-        <div class="chat-input">
-          <input type="text" id="userMessage" placeholder="Ask me anything about your studies..." />
-          <button onclick="sendMessage()" class="btn btn-primary">
+        <div class="chat-messages" id="chatMessages">
+          <div class="message ai-message">
+            <strong>🤖 AI Tutor:</strong> Hello! I'm your AI learning assistant with real-time web search capabilities. Ask me anything about any subject, and I'll search the internet to give you the most accurate and up-to-date information. You can ask in English or Hindi! 😊
+            <br><br>
+            <em style="font-size: 0.9rem; opacity: 0.8;">💡 I search the web for every question to provide you with current, verified information!</em>
+          </div>
+        </div>
+        <div class="chat-input-container">
+          <input 
+            type="text" 
+            class="chat-input" 
+            id="chatInput" 
+            placeholder="Ask your question here..."
+            onkeypress="handleKeyPress(event)"
+          >
+          <button class="send-btn" onclick="sendMessage()">
             <i class="fas fa-paper-plane"></i>
           </button>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- School Quiz Section -->
-  <div class="main-container">
-    <div class="container hidden" id="quizSection">
-      <h2>Take a Quick Quiz</h2>
-      <p>Test your knowledge with our interactive quizzes. Select your class and subject to begin your learning assessment.</p>
-      
-      <div class="form-group">
-        <label class="form-label">Select Class</label>
-        <select id="quizClassSelect" onchange="loadQuizSubjects()"></select>
+  <!-- Stats Section -->
+  <section class="container">
+    <h2 class="section-title">Our Impact</h2>
+    <div class="stats-container">
+      <div class="stat-card">
+        <div class="stat-icon">👨‍🎓</div>
+        <div class="stat-number" data-target="50000">0</div>
+        <div class="stat-label">Active Students</div>
       </div>
-      
-      <div class="form-group">
-        <label class="form-label">Select Subject</label>
-        <select id="quizSubjectSelect"></select>
+      <div class="stat-card">
+        <div class="stat-icon">📚</div>
+        <div class="stat-number" data-target="500">0</div>
+        <div class="stat-label">Courses Available</div>
       </div>
-      
-      <div style="text-align: center;">
-        <button class="btn btn-primary" onclick="startQuiz()">
-          <i class="fas fa-play"></i> Start Quiz
-        </button>
+      <div class="stat-card">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-number" data-target="98">0</div>
+        <div class="stat-label">Satisfaction Rate</div>
       </div>
-      
-      <div id="quizContent" class="quiz-container hidden"></div>
-    </div>
-  </div>
-
-  <!-- Competitive Exam Section -->
-  <div class="main-container">
-    <div class="container hidden" id="competitiveSection">
-      <h2>UP Competitive Exams</h2>
-      <p>Prepare for your future with our comprehensive competitive exam preparation modules. Choose an exam to start your practice.</p>
-      
-      <div class="form-group">
-        <label class="form-label">Select Exam</label>
-        <select id="upExamSelect">
-          <option value="UPPCS">UPPCS</option>
-          <option value="UPTET">UPTET</option>
-          <option value="UPSI">UPSI</option>
-          <option value="UP Police">UP Police</option>
-        </select>
-      </div>
-      
-      <div style="text-align: center;">
-        <button class="btn btn-warning" onclick="startCompetitiveQuiz()">
-          <i class="fas fa-trophy"></i> Start Practice Test
-        </button>
-      </div>
-      
-      <div id="competitiveQuizContent" class="quiz-container hidden"></div>
-    </div>
-  </div>
-
-  <!-- Video Library Section -->
-  <div class="main-container">
-    <div class="container hidden" id="videoSection">
-      <h2>Video Library</h2>
-      <p>Enhance your learning with our curated collection of educational videos.</p>
-      
-      <div class="form-group">
-        <label class="form-label">Select Category</label>
-        <select id="videoCategory" onchange="filterVideos()">
-          <option value="all">All Categories</option>
-          <option value="math">Mathematics</option>
-          <option value="science">Science</option>
-          <option value="english">English</option>
-          <option value="history">History</option>
-        </select>
-      </div>
-      
-      <div class="video-grid" id="videoGrid">
-        <!-- Videos will be loaded here -->
+      <div class="stat-card">
+        <div class="stat-icon">🏆</div>
+        <div class="stat-number" data-target="25000">0</div>
+        <div class="stat-label">Certificates Issued</div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Subject Content Modal -->
-  <div id="subjectModal" class="modal hidden">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeSubjectModal()">&times;</span>
-      <h2 id="modalSubjectTitle"></h2>
-      <div id="modalSubjectContent"></div>
-    </div>
-  </div>
-
-  <!-- Contact Us Section -->
-  <div class="main-container">
-    <div class="container hidden" id="contactSection">
-      <h2>Contact Us</h2>
-      <p>We’d love to hear from you. Send us a message!</p>
-      <form class="contact-form" onsubmit="submitContactForm(event)">
-        <div class="form-group">
-          <label for="name" class="form-label">Your Name:</label>
-          <input type="text" id="name" placeholder="Your Name" required />
+  <!-- Progress Section -->
+  <section class="container" id="progress">
+    <div class="progress-section">
+      <h2 class="section-title">Your Learning Progress</h2>
+      <div class="progress-item">
+        <div class="progress-header">
+          <span><strong>Mathematics</strong></span>
+          <span>75%</span>
         </div>
-        <div class="form-group">
-          <label for="email" class="form-label">Your Email:</label>
-          <input type="email" id="email" placeholder="Your Email" required />
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 75%"></div>
         </div>
-        <div class="form-group">
-          <label for="message" class="form-label">Your Message:</label>
-          <textarea id="message" placeholder="Your Message" required></textarea>
+      </div>
+      <div class="progress-item">
+        <div class="progress-header">
+          <span><strong>Science</strong></span>
+          <span>60%</span>
         </div>
-        <button class="btn btn-primary" type="submit">Send Message</button>
-      </form>
-      <div id="contactResponse" class="score-display"></div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 60%"></div>
+        </div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-header">
+          <span><strong>Programming</strong></span>
+          <span>85%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 85%"></div>
+        </div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-header">
+          <span><strong>English</strong></span>
+          <span>90%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 90%"></div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <h3>EduLearn - Empowering Education</h3>
+      <p>Learn, Grow, and Succeed with AI-Powered Education</p>
+      <div class="social-links">
+        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+      </div>
+      <p style="margin-top: 2rem; opacity: 0.7;">&copy; 2024 EduLearn. All rights reserved.</p>
+    </div>
+  </footer>
 
   <script>
-    const subjects = {
-      "Class 1": ["Math", "English", "Science"],
-      "Class 2": ["Math", "English", "Science"],
-      "Class 3": ["Math", "English", "Science", "Social Studies"],
-      "Class 4": ["Math", "English", "Science", "Social Studies"],
-      "Class 5": ["Math", "English", "Science", "Social Studies", "Computer"],
-      "Class 6": ["Math", "English", "Science", "History", "Geography"],
-      "Class 7": ["Math", "English", "Science", "History", "Geography", "AI Basics"],
-      "Class 8": ["Math", "English", "Science", "History", "Geography", "AI Advanced"]
-    };
+    // Global variables
+    let conversationHistory = [];
+    let currentTopic = '';
+    let quizQuestions = [];
+    let currentQuizIndex = 0;
+    let quizScore = 0;
 
-    const subjectIcons = {
-      "Math": "fas fa-calculator",
-      "English": "fas fa-book-open",
-      "Science": "fas fa-flask",
-      "Social Studies": "fas fa-globe",
-      "Computer": "fas fa-laptop-code",
-      "History": "fas fa-landmark",
-      "Geography": "fas fa-map-marked-alt",
-      "AI Basics": "fas fa-brain",
-      "AI Advanced": "fas fa-microchip"
-    };
-
-    const subjectDescriptions = {
-      "Math": "Numbers, shapes, and problem solving",
-      "English": "Language, literature, and communication",
-      "Science": "Discover the world around us",
-      "Social Studies": "Society, culture, and human behavior",
-      "Computer": "Technology and digital skills",
-      "History": "Journey through time and events",
-      "Geography": "Explore our planet and places",
-      "AI Basics": "Introduction to artificial intelligence",
-      "AI Advanced": "Advanced AI concepts and applications"
-    };
-
-    const quizzes = {
-      "Class 1": {
-        "Math": [
-          { question: "What is 1 + 1?", options: ["1", "2", "3"], answer: "2" },
-          { question: "How many sides does a triangle have?", options: ["2", "3", "4"], answer: "3" },
-          { question: "What comes after 5?", options: ["4", "6", "7"], answer: "6" }
-        ],
-        "English": [
-          { question: "Which letter comes after A?", options: ["B", "C", "D"], answer: "B" },
-          { question: "What is the opposite of 'big'?", options: ["large", "small", "tall"], answer: "small" }
-        ],
-        "Science": [
-          { question: "Which animal can fly?", options: ["Fish", "Bird", "Cat"], answer: "Bird" },
-          { question: "What do plants need to grow?", options: ["Chocolate", "Water", "Toys"], answer: "Water" }
-        ]
-      },
-      "Class 2": {
-        "Math": [
-          { question: "What is 5 x 2?", options: ["7", "10", "12"], answer: "10" },
-          { question: "What is 20 - 5?", options: ["10", "15", "25"], answer: "15" },
-          { question: "How many sides does a square have?", options: ["3", "4", "5"], answer: "4" }
-        ],
-        "English": [
-          { question: "Which is a correct sentence?", options: ["I am happy.", "I happy am.", "Happy I am."], answer: "I am happy." },
-          { question: "What is the past tense of 'run'?", options: ["Runned", "Ran", "Running"], answer: "Ran" }
-        ],
-        "Science": [
-          { question: "What do we breathe?", options: ["Water", "Air", "Food"], answer: "Air" },
-          { question: "Which is a living thing?", options: ["Rock", "Water", "Tree"], answer: "Tree" }
-        ]
-      },
-      "Class 3": {
-        "Math": [
-          { question: "What is 7 x 8?", options: ["54", "56", "58"], answer: "56" },
-          { question: "What is 100 ÷ 4?", options: ["20", "25", "30"], answer: "25" }
-        ],
-        "Science": [
-          { question: "What is the largest planet in our solar system?", options: ["Earth", "Mars", "Jupiter"], answer: "Jupiter" },
-          { question: "What do plants produce during photosynthesis?", options: ["Carbon dioxide", "Oxygen", "Nitrogen"], answer: "Oxygen" }
-        ]
-      }
-    };
-
-    const competitiveQuizzes = {
-      "UPPCS": [
-        { question: "Who was the first Governor of Uttar Pradesh?", options: ["Sarojini Naidu", "Dr. Rajendra Prasad", "C. Rajagopalachari"], answer: "Sarojini Naidu" },
-        { question: "When was Uttar Pradesh formed?", options: ["1947", "1950", "1956"], answer: "1950" },
-        { question: "Which is the largest district by area in Uttar Pradesh?", options: ["Lakhimpur Kheri", "Sonbhadra", "Hardoi"], answer: "Sonbhadra" },
-        { question: "Which river is known as 'Ganga ki Beti' in Uttar Pradesh?", options: ["Yamuna", "Gomti", "Ghaghara"], answer: "Gomti" }
-      ],
-      "UPTET": [
-        { question: "What is the full form of UPTET?", options: ["UP Teacher Eligibility Test", "UP Training Exam Test", "Uttar Pradesh Tutor Entrance Test"], answer: "UP Teacher Eligibility Test" },
-        { question: "Which article of the Indian Constitution provides free and compulsory education to children?", options: ["Article 21A", "Article 45", "Article 46"], answer: "Article 21A" },
-        { question: "Who is known as the father of modern education in India?", options: ["Mahatma Gandhi", "Lord Macaulay", "Raja Ram Mohan Roy"], answer: "Raja Ram Mohan Roy" },
-        { question: "Which commission recommended the 10+2+3 pattern of education?", options: ["Kothari Commission", "Mudaliar Commission", "Radhakrishnan Commission"], answer: "Kothari Commission" }
-      ],
-      "UPSI": [
-        { question: "What is the full form of IPC?", options: ["Indian Penal Code", "International Police Code", "Indian Police Constitution"], answer: "Indian Penal Code" },
-        { question: "Under which section of CrPC is a police officer authorized to make an arrest without warrant?", options: ["Section 41", "Section 50", "Section 60"], answer: "Section 41" },
-        { question: "Which Article of the Indian Constitution deals with the protection of life and personal liberty?", options: ["Article 19", "Article 21", "Article 32"], answer: "Article 21" }
-      ],
-      "UP Police": [
-        { question: "Who is the current Director General of Police (DGP) of Uttar Pradesh?", options: ["Vijay Kumar", "Prashant Kumar", "OP Singh"], answer: "Prashant Kumar" },
-        { question: "How many Police Zones are there in Uttar Pradesh?", options: ["8", "10", "12"], answer: "8" },
-        { question: "Which act deals with the regulation of police forces in India?", options: ["Police Act, 1861", "Police Act, 1947", "Police Act, 1950"], answer: "Police Act, 1861" }
-      ]
-    };
-
-    let currentQuiz = [], currentQuestionIndex = 0, correctAnswers = 0;
-
-    function updateSubjects() {
-      const selectedClass = document.getElementById("classSelect").value;
-      const subjectsDiv = document.getElementById("subjects");
-      subjectsDiv.innerHTML = "";
-      
-      subjects[selectedClass].forEach(subject => {
-        const div = document.createElement("div");
-        div.className = "subject-card";
-        div.innerHTML = `
-          <div class="subject-icon">
-            <i class="${subjectIcons[subject] || 'fas fa-book'}"></i>
-          </div>
-          <div class="subject-title">${subject}</div>
-          <div class="subject-desc">${subjectDescriptions[subject] || 'Explore this subject'}</div>
-        `;
-        div.onclick = () => selectSubject(subject);
-        subjectsDiv.appendChild(div);
-      });
-    }
-
-    function selectSubject(subject) {
-      const selectedClass = document.getElementById("classSelect").value;
-      const videos = subjectVideos[selectedClass]?.[subject] || [];
-      
-      // Set modal title
-      document.getElementById("modalSubjectTitle").textContent = `${selectedClass} - ${subject}`;
-      
-      // Generate content for the modal
-      const modalContent = document.getElementById("modalSubjectContent");
-      
-      if (videos.length === 0) {
-        modalContent.innerHTML = "<p>No videos available for this subject yet.</p>";
-      } else {
-        let content = `<p>Explore these educational videos for ${subject}:</p>
-                      <div class="subject-videos">`;
-        
-        videos.forEach(video => {
-          content += `
-            <div class="video-card">
-              <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/${video.youtubeId}" 
-                        title="${video.title}" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen></iframe>
-              </div>
-              <div class="video-info">
-                <h3 class="video-title">${video.title}</h3>
-                <p class="video-description">${video.description}</p>
-              </div>
-            </div>
-          `;
-        });
-        
-        content += `</div>`;
-        modalContent.innerHTML = content;
-      }
-      
-      // Show the modal
-      document.getElementById("subjectModal").classList.remove("hidden");
-    }
-
-    function chatWithAI() {
-      const messages = [
-        "Hello! I'm your AI tutor. How can I help you today?",
-        "I can help you with any subject or topic you're studying.",
-        "Just ask me a question and I'll do my best to explain it!"
-      ];
-      
-      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-      alert(randomMessage);
-    }
-
-    function showTab(tab) {
-      ["home", "quiz", "competitive", "contact", "video"].forEach(t => {
-        document.getElementById(t + "Section").classList.add("hidden");
-      });
-      document.getElementById(tab + "Section").classList.remove("hidden");
-      
-      // Load videos when video tab is selected
-      if (tab === 'video') {
-        loadVideos();
-      }
-    }
-
-    function loadQuizSubjects() {
-      const selectedClass = document.getElementById("quizClassSelect").value;
-      const subjectSelect = document.getElementById("quizSubjectSelect");
-      subjectSelect.innerHTML = "";
-      subjects[selectedClass].forEach(sub => {
-        const opt = document.createElement("option");
-        opt.value = sub;
-        opt.textContent = sub;
-        subjectSelect.appendChild(opt);
-      });
-    }
-
-    function startQuiz() {
-      const cls = document.getElementById("quizClassSelect").value;
-      const subject = document.getElementById("quizSubjectSelect").value;
-      currentQuiz = quizzes[cls]?.[subject] || [];
-      currentQuestionIndex = 0;
-      correctAnswers = 0;
-      
-      // Show the quiz content container
-      document.getElementById("quizContent").classList.remove("hidden");
-      
-      if (!currentQuiz.length) {
-        document.getElementById("quizContent").innerHTML = "<p>No quiz available for this subject yet.</p>";
-      } else {
-        showQuestion("quizContent");
-      }
-    }
-
-    function showQuestion(containerId) {
-      const q = currentQuiz[currentQuestionIndex];
-      const progress = ((currentQuestionIndex + 1) / currentQuiz.length) * 100;
-      
-      document.getElementById(containerId).innerHTML = `
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: ${progress}%"></div>
-        </div>
-        <div class="quiz-question">
-          <h3>Question ${currentQuestionIndex + 1} of ${currentQuiz.length}</h3>
-          <p style="font-size: 1.2rem; margin: 1rem 0;">${q.question}</p>
-          <div class="quiz-options">
-            ${q.options.map((opt, index) => `
-              <label class="quiz-option">
-                <input type="radio" name="quizOption" value="${opt}">
-                <span style="font-weight: 500;">${String.fromCharCode(65 + index)}. ${opt}</span>
-              </label>
-            `).join('')}
-          </div>
-          <div style="text-align: center; margin-top: 2rem;">
-            <button class="btn ${currentQuestionIndex === currentQuiz.length - 1 ? 'btn-success' : 'btn-primary'}" onclick="nextQuestion('${containerId}')">
-              <i class="fas fa-${currentQuestionIndex === currentQuiz.length - 1 ? 'check' : 'arrow-right'}"></i>
-              ${currentQuestionIndex === currentQuiz.length - 1 ? "Submit Quiz" : "Next Question"}
-            </button>
-          </div>
-        </div>
-      `;
-    }
-
-    function nextQuestion(containerId) {
-      const selected = document.querySelector(`#${containerId} input[name="quizOption"]:checked`);
-      if (!selected) return alert("Please select an answer.");
-      if (selected.value === currentQuiz[currentQuestionIndex].answer) correctAnswers++;
-      currentQuestionIndex++;
-      currentQuestionIndex < currentQuiz.length ? showQuestion(containerId) : showScore(containerId);
-    }
-
-    function showScore(containerId) {
-      const percentage = Math.round((correctAnswers / currentQuiz.length) * 100);
-      const isGoodScore = percentage >= 70;
-      
-      document.getElementById(containerId).innerHTML = `
-        <div class="score-display">
-          <div class="score-number">${correctAnswers}/${currentQuiz.length}</div>
-          <h3>${percentage}%</h3>
-          <p style="font-size: 1.2rem; margin: 1rem 0;">
-            ${isGoodScore ? 'Excellent work!' : 'Good effort! Keep practicing!'}
-          </p>
-          <div style="margin-top: 2rem;">
-            <button class="btn btn-primary" onclick="${containerId === 'quizContent' ? 'startQuiz()' : 'startCompetitiveQuiz()'}">
-              <i class="fas fa-redo"></i> Retake Quiz
-            </button>
-            <button class="btn btn-secondary" onclick="showTab('home')" style="margin-left: 1rem;">
-              <i class="fas fa-home"></i> Back to Home
-            </button>
-          </div>
-        </div>
-      `;
-    }
-
-    function startCompetitiveQuiz() {
-      const exam = document.getElementById("upExamSelect").value;
-      currentQuiz = competitiveQuizzes[exam] || [];
-      currentQuestionIndex = 0;
-      correctAnswers = 0;
-      
-      // Show the competitive quiz content container
-      document.getElementById("competitiveQuizContent").classList.remove("hidden");
-      
-      if (!currentQuiz.length) {
-        document.getElementById("competitiveQuizContent").innerHTML = "<p>No quiz available for this exam yet.</p>";
-      } else {
-        showQuestion("competitiveQuizContent");
-      }
-    }
-
-    // Class-specific subject videos
-    const subjectVideos = {
-      "Class 1": {
-        "Math": [
-          { title: "Addition and Subtraction for Kids", youtubeId: "AuX7nPBqDts", description: "Learn basic addition and subtraction" },
-          { title: "Counting Numbers 1-20", youtubeId: "0VLxWIHRD4E", description: "Learn to count from 1 to 20" }
-        ],
-        "English": [
-          { title: "Phonics Song with TWO Words", youtubeId: "BELlZKpi1Zs", description: "Learn phonics with fun songs" },
-          { title: "ABC Song | Alphabet Song", youtubeId: "ezmsrB59mj8", description: "Learn the alphabet with this catchy song" }
-        ],
-        "Science": [
-          { title: "Living and Non-living Things", youtubeId: "p51FiPO2_kQ", description: "Learn about living and non-living things" },
-          { title: "Parts of a Plant for Kids", youtubeId: "p3St51F4kE8", description: "Learn about different parts of plants" }
-        ]
-      },
-      "Class 2": {
-        "Math": [
-          { title: "Multiplication for Kids", youtubeId: "iiR3wzj_-lw", description: "Learn basic multiplication concepts" },
-          { title: "Place Value - Ones, Tens, Hundreds", youtubeId: "a4FXl4zb3E4", description: "Understanding place value in numbers" }
-        ],
-        "English": [
-          { title: "Nouns - Common and Proper", youtubeId: "McmHGe_6Hhs", description: "Learn about common and proper nouns" },
-          { title: "Verbs for Kids", youtubeId: "j-fvKgOLXnA", description: "Action words and how to use them" }
-        ],
-        "Science": [
-          { title: "States of Matter for Kids", youtubeId: "jmm1J2yI9tk", description: "Learn about solids, liquids, and gases" },
-          { title: "Animal Habitats for Kids", youtubeId: "Xj1ASC-TlsI", description: "Discover where different animals live" }
-        ]
-      },
-      "Class 3": {
-        "Math": [
-          { title: "Fractions for Kids", youtubeId: "kn83BA7cRNM", description: "Understanding fractions made easy" },
-          { title: "Division for Kids", youtubeId: "KGMf314LUc0", description: "Learn division step by step" }
-        ],
-        "English": [
-          { title: "Adjectives for Kids", youtubeId: "4goaRUu1GVU", description: "Learn about describing words" },
-          { title: "Punctuation Explained", youtubeId: "LdCOswMeXFQ", description: "Using periods, commas, and question marks" }
-        ],
-        "Science": [
-          { title: "The Water Cycle for Kids", youtubeId: "al-do-HGuIk", description: "Learn about evaporation, condensation, and precipitation" },
-          { title: "Simple Machines for Kids", youtubeId: "fvOmaf2GfCY", description: "Discover levers, pulleys, and more" }
-        ]
-      }
-    };
-    
-    // Achievement system data
-    const achievements = [
-      {
-        id: 'first_quiz',
-        name: 'Quiz Beginner',
-        description: 'Complete your first quiz',
-        icon: 'fas fa-star',
-        progress: 0,
-        target: 1,
-        unlocked: false
-      },
-      {
-        id: 'quiz_master',
-        name: 'Quiz Master',
-        description: 'Complete 5 quizzes',
-        icon: 'fas fa-crown',
-        progress: 0,
-        target: 5,
-        unlocked: false
-      },
-      {
-        id: 'perfect_score',
-        name: 'Perfect Score',
-        description: 'Get 100% on any quiz',
-        icon: 'fas fa-award',
-        progress: 0,
-        target: 1,
-        unlocked: false
-      },
-      {
-        id: 'video_watcher',
-        name: 'Video Enthusiast',
-        description: 'Watch 3 educational videos',
-        icon: 'fas fa-video',
-        progress: 0,
-        target: 3,
-        unlocked: false
-      },
-      {
-        id: 'subject_explorer',
-        name: 'Subject Explorer',
-        description: 'Explore all subjects',
-        icon: 'fas fa-compass',
-        progress: 0,
-        target: 3,
-        unlocked: false
-      },
-      {
-        id: 'ai_friend',
-        name: 'AI Study Buddy',
-        description: 'Chat with the AI tutor 5 times',
-        icon: 'fas fa-robot',
-        progress: 0,
-        target: 5,
-        unlocked: false
-      }
-    ];
-    
-    // User progress data
-    let userProgress = {
-      quizzesCompleted: 0,
-      videosWatched: 0,
-      subjectsExplored: new Set(),
-      perfectScores: 0,
-      aiInteractions: 0,
-      points: 0,
-      level: 1,
-      streakDays: 0,
-      lastLogin: null
-    };
-    
-    // Points system configuration
-    const pointsConfig = {
-      quizComplete: 10,
-      perfectScore: 20,
-      videoWatch: 5,
-      newSubject: 15,
-      aiInteraction: 2,
-      dailyLogin: 5,
-      streak: 10 // additional points for maintaining streak
-    };
-    
-    // Level thresholds
-    const levelThresholds = [0, 50, 100, 200, 350, 500, 700, 1000, 1500, 2000];
-    
-    // Load achievements from localStorage or use defaults
-    function loadAchievements() {
-      const savedAchievements = localStorage.getItem('achievements');
-      const savedProgress = localStorage.getItem('userProgress');
-      
-      if (savedAchievements) {
-        achievements.splice(0, achievements.length, ...JSON.parse(savedAchievements));
-      }
-      
-      if (savedProgress) {
-        const parsedProgress = JSON.parse(savedProgress);
-        
-        // Ensure we have the new gamification properties
-        userProgress = {
-          ...parsedProgress,
-          points: parsedProgress.points || 0,
-          level: parsedProgress.level || 1,
-          streakDays: parsedProgress.streakDays || 0,
-          lastLogin: parsedProgress.lastLogin || null,
-          // Convert subjectsExplored back to a Set if it exists
-          subjectsExplored: parsedProgress.subjectsExplored ? new Set(parsedProgress.subjectsExplored) : new Set()
-        };
-        
-        // Check daily streak
-        checkDailyStreak();
-      }
-      
-      // Update UI with user stats
-      updateUserStatsUI();
-      }
-      
-      renderAchievements();
-    
-    
-    // Add points and update level
-    function addPoints(amount, reason) {
-      userProgress.points += amount;
-      checkLevelUp();
-      saveAchievements();
-      showPointsNotification(amount, reason);
-    }
-    
-    // Check if user leveled up
-    function checkLevelUp() {
-      const currentLevel = userProgress.level;
-      let newLevel = currentLevel;
-      
-      // Find the highest level threshold that the user's points exceed
-      for (let i = levelThresholds.length - 1; i >= 0; i--) {
-        if (userProgress.points >= levelThresholds[i]) {
-          newLevel = i + 1;
-          break;
-        }
-      }
-      
-      // If level increased, show notification
-      if (newLevel > currentLevel) {
-        userProgress.level = newLevel;
-        showLevelUpNotification(newLevel);
-      }
-    }
-    
-    // Show points notification
-    function showPointsNotification(points, reason) {
-      const notification = document.createElement('div');
-      notification.className = 'points-notification';
-      notification.innerHTML = `<i class="fas fa-plus-circle"></i> ${points} points: ${reason}`;
-      document.body.appendChild(notification);
-      
-      // Add sound effect
-      const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3');
-      audio.volume = 0.3;
-      audio.play().catch(e => console.log('Audio play failed:', e));
-      
-      // Animate notification
-      setTimeout(() => notification.classList.add('show'), 10);
-      setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => notification.remove(), 500);
-      }, 3000);
-    }
-    
-    // Show level up notification
-    function showLevelUpNotification(newLevel) {
-      const notification = document.createElement('div');
-      notification.className = 'level-notification';
-      notification.innerHTML = `<i class="fas fa-level-up-alt"></i> Level Up! You are now level ${newLevel}`;
-      document.body.appendChild(notification);
-      
-      // Add sound effect
-      const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3');
-      audio.volume = 0.4;
-      audio.play().catch(e => console.log('Audio play failed:', e));
-      
-      // Add confetti effect
-      createConfetti();
-      
-      // Animate notification
-      setTimeout(() => notification.classList.add('show'), 10);
-      setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => notification.remove(), 500);
-      }, 5000);
-    }
-    
-    // Create confetti effect for level up
-    function createConfetti() {
-      const confettiContainer = document.createElement('div');
-      confettiContainer.style.position = 'fixed';
-      confettiContainer.style.top = '0';
-      confettiContainer.style.left = '0';
-      confettiContainer.style.width = '100%';
-      confettiContainer.style.height = '100%';
-      confettiContainer.style.pointerEvents = 'none';
-      confettiContainer.style.zIndex = '9999';
-      document.body.appendChild(confettiContainer);
-      
-      const colors = ['#FF9800', '#4CAF50', '#2196F3', '#E91E63', '#9C27B0'];
-      
-      for (let i = 0; i < 100; i++) {
-        const confetti = document.createElement('div');
-        confetti.style.position = 'absolute';
-        confetti.style.width = Math.random() * 10 + 5 + 'px';
-        confetti.style.height = Math.random() * 10 + 5 + 'px';
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.borderRadius = '50%';
-        confetti.style.opacity = Math.random() + 0.5;
-        
-        const startX = Math.random() * window.innerWidth;
-        const startY = -20;
-        const endY = window.innerHeight + 20;
-        
-        confetti.style.left = startX + 'px';
-        confetti.style.top = startY + 'px';
-        
-        confettiContainer.appendChild(confetti);
-        
-        const duration = Math.random() * 3000 + 2000;
-        const rotation = Math.random() * 360;
-        
-        confetti.animate([
-          { transform: `translate(0, 0) rotate(0deg)`, opacity: 1 },
-          { transform: `translate(${Math.random() * 100 - 50}px, ${endY}px) rotate(${rotation}deg)`, opacity: 0 }
-        ], {
-          duration: duration,
-          easing: 'cubic-bezier(0.1, 0.8, 0.2, 1)'
-        });
-      }
-      
-      setTimeout(() => {
-        if (document.body.contains(confettiContainer)) {
-          document.body.removeChild(confettiContainer);
-        }
-      }, 5000);
-    }
-    
-    // Check daily streak
-    function checkDailyStreak() {
-      const today = new Date().toDateString();
-      const lastLogin = userProgress.lastLogin;
-      
-      if (lastLogin) {
-        const lastDate = new Date(lastLogin);
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        
-        if (lastDate.toDateString() === yesterday.toDateString()) {
-          // User logged in yesterday, increment streak
-          userProgress.streakDays++;
-          addPoints(pointsConfig.streak, 'Daily Streak Bonus');
-        } else if (lastDate.toDateString() !== today) {
-          // User didn't log in yesterday, reset streak
-          userProgress.streakDays = 1;
-        }
-      } else {
-        // First login
-        userProgress.streakDays = 1;
-      }
-      
-      // Add daily login points if not already logged in today
-      if (lastLogin !== today) {
-        addPoints(pointsConfig.dailyLogin, 'Daily Login');
-      }
-      
-      userProgress.lastLogin = today;
-      saveAchievements();
-    }
-    
-    // Save achievements to localStorage
-    function saveAchievements() {
-      // Convert Set to Array for JSON serialization
-      const progressToSave = {...userProgress, subjectsExplored: Array.from(userProgress.subjectsExplored)};
-      
-      localStorage.setItem('achievements', JSON.stringify(achievements));
-      localStorage.setItem('userProgress', JSON.stringify(progressToSave));
-      
-      // Update UI with latest stats
-      updateUserStatsUI();
-    }
-    
-    // Update user stats UI
-    function updateUserStatsUI() {
-      document.getElementById('userLevel').textContent = userProgress.level;
-      document.getElementById('userPoints').textContent = userProgress.points;
-      document.getElementById('userStreak').textContent = userProgress.streakDays;
-    }
-    
-    // Render achievements in the panel
-    function renderAchievements() {
-      const achievementsList = document.getElementById('achievementsList');
-      achievementsList.innerHTML = '';
-      
-      achievements.forEach(achievement => {
-        const progressPercent = Math.min(100, Math.round((achievement.progress / achievement.target) * 100));
-        
-        const achievementItem = document.createElement('div');
-        achievementItem.className = `achievement-item ${achievement.unlocked ? 'unlocked' : ''}`;
-        
-        achievementItem.innerHTML = `
-          <div class="achievement-icon">
-            <i class="${achievement.icon}"></i>
-          </div>
-          <div class="achievement-info">
-            <div class="achievement-name">${achievement.name}</div>
-            <div class="achievement-description">${achievement.description}</div>
-            <div class="achievement-progress">
-              <div class="achievement-progress-bar" style="width: ${progressPercent}%"></div>
-            </div>
-          </div>
-        `;
-        
-        achievementsList.appendChild(achievementItem);
-      });
-    }
-    
-    // Update achievement progress
-    function updateAchievement(id, increment = 1) {
-      const achievement = achievements.find(a => a.id === id);
-      if (!achievement) return;
-      
-      achievement.progress = Math.min(achievement.target, achievement.progress + increment);
-      
-      if (achievement.progress >= achievement.target && !achievement.unlocked) {
-        achievement.unlocked = true;
-        showAchievementNotification(achievement);
-      }
-      
-      saveAchievements();
-      renderAchievements();
-    }
-    
-    // Show achievement notification
-    function showAchievementNotification(achievement) {
-      const notification = document.getElementById('achievementNotification');
-      const notificationText = document.getElementById('notificationText');
-      
-      notificationText.textContent = achievement.description;
-      notification.classList.add('show');
-      
-      setTimeout(() => {
-        notification.classList.remove('show');
-      }, 3000);
-    }
-    
-    // Toggle achievements panel
-    function toggleAchievements() {
-      const panel = document.getElementById('achievementsPanel');
-      panel.classList.toggle('visible');
-    }
-    
-    // Track quiz completion
-    function trackQuizCompletion(score, totalQuestions) {
-      userProgress.quizzesCompleted++;
-      updateAchievement('first_quiz');
-      updateAchievement('quiz_master');
-      
-      // Award points for completing quiz
-      addPoints(pointsConfig.quizComplete, 'Quiz Completed');
-      
-      if (score === totalQuestions) {
-        updateAchievement('perfect_score');
-        userProgress.perfectScores++;
-        // Award bonus points for perfect score
-        addPoints(pointsConfig.perfectScore, 'Perfect Score');
-      }
-    }
-    
-    // Track video watching
-    function trackVideoWatch() {
-      userProgress.videosWatched++;
-      updateAchievement('video_watcher');
-      // Award points for watching video
-      addPoints(pointsConfig.videoWatch, 'Video Watched');
-    }
-    
-    // Track subject exploration
-    function trackSubjectExploration(subject) {
-      // Only award points if this is a new subject
-      if (!userProgress.subjectsExplored.has(subject)) {
-        userProgress.subjectsExplored.add(subject);
-        // Award points for exploring new subject
-        addPoints(pointsConfig.newSubject, 'New Subject Explored');
-      }
-      
-      if (userProgress.subjectsExplored.size >= 3) {
-        updateAchievement('subject_explorer');
-      }
-      
-      saveAchievements();
-    }
-
-    function selectSubject(subject) {
-      const selectedClass = document.getElementById("classSelect").value;
-      const videos = subjectVideos[selectedClass]?.[subject] || [];
-      
-      // Track subject exploration for achievements
-      trackSubjectExploration(subject);
-      
-      // Set modal title
-      document.getElementById("modalSubjectTitle").textContent = `${selectedClass} - ${subject}`;
-      
-      // Generate content for the modal
-      const modalContent = document.getElementById("modalSubjectContent");
-      
-      if (videos.length === 0) {
-        modalContent.innerHTML = "<p>No videos available for this subject yet.</p>";
-      } else {
-        let content = `<p>Explore these educational videos for ${subject}:</p>
-                      <div class="subject-videos">`;
-        
-        videos.forEach(video => {
-          content += `
-            <div class="video-card">
-              <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/${video.youtubeId}" 
-                        title="${video.title}" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen
-                        onload="trackVideoWatch()"></iframe>
-              </div>
-              <div class="video-info">
-                <h3 class="video-title">${video.title}</h3>
-                <p class="video-description">${video.description}</p>
-              </div>
-            </div>
-          `;
-        });
-        
-        content += `</div>`;
-        modalContent.innerHTML = content;
-      }
-      
-      // Show the modal
-      document.getElementById("subjectModal").classList.remove("hidden");
-    }
-
-    function closeSubjectModal() {
-      document.getElementById("subjectModal").classList.add("hidden");
-    }
-
-    // Educational videos data
-    const educationalVideos = [
-      {
-        id: "1",
-        title: "Introduction to Fractions",
-        description: "Learn the basics of fractions in this easy tutorial",
-        category: "math",
-        youtubeId: "kn83BA7cRNM",
-        duration: "9:25",
-        level: "Elementary"
-      },
-      {
-        id: "2",
-        title: "Photosynthesis Explained",
-        description: "How plants make their own food through photosynthesis",
-        category: "science",
-        youtubeId: "3pD68uxRLkM",
-        duration: "7:30",
-        level: "Middle School"
-      },
-      {
-        id: "3",
-        title: "Grammar Basics - Parts of Speech",
-        description: "Understanding nouns, verbs, adjectives and more",
-        category: "english",
-        youtubeId: "MwCTZj1JFUI",
-        duration: "12:18",
-        level: "Elementary"
-      },
-      {
-        id: "4",
-        title: "Ancient India - Mauryan Empire",
-        description: "The rise and fall of the Mauryan Empire in ancient India",
-        category: "history",
-        youtubeId: "nx3KOKJz1_0",
-        duration: "15:42",
-        level: "High School"
-      },
-      {
-        id: "5",
-        title: "Algebra Fundamentals",
-        description: "Learn the basics of algebraic equations",
-        category: "math",
-        youtubeId: "NybHckSEQBI",
-        duration: "11:10",
-        level: "Middle School"
-      },
-      {
-        id: "6",
-        title: "The Water Cycle",
-        description: "Understanding evaporation, condensation, and precipitation",
-        category: "science",
-        youtubeId: "al-do-HGuIk",
-        duration: "8:15",
-        level: "Elementary"
-      }
-    ];
-
-    function loadVideos(category = 'all') {
-      const videoGrid = document.getElementById('videoGrid');
-      videoGrid.innerHTML = '';
-      
-      const filteredVideos = category === 'all' 
-        ? educationalVideos 
-        : educationalVideos.filter(video => video.category === category);
-      
-      filteredVideos.forEach(video => {
-        const videoCard = document.createElement('div');
-        videoCard.className = 'video-card';
-        videoCard.innerHTML = `
-          <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/${video.youtubeId}" 
-                    title="${video.title}" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen></iframe>
-          </div>
-          <div class="video-info">
-            <h3 class="video-title">${video.title}</h3>
-            <p class="video-description">${video.description}</p>
-            <div class="video-meta">
-              <span>${video.duration}</span>
-              <span>${video.level}</span>
-            </div>
-          </div>
-        `;
-        videoGrid.appendChild(videoCard);
-      });
-    }
-
-    function filterVideos() {
-      const category = document.getElementById('videoCategory').value;
-      loadVideos(category);
-    }
-    
-    function submitContactForm(event) {
-      event.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const message = document.getElementById("message").value.trim();
-      
-      if (name && email && message) {
-        document.getElementById("contactResponse").innerHTML = `
-          <div style="background: var(--success-gradient); color: white; padding: 2rem; border-radius: 15px;">
-            <i class="fas fa-check-circle" style="font-size: 2rem; margin-bottom: 1rem;"></i>
-            <h3>Thank you, ${name}!</h3>
-            <p>Your message has been sent successfully. We'll get back to you soon!</p>
-          </div>
-        `;
-        document.querySelector(".contact-form").reset();
-      } else {
-        document.getElementById("contactResponse").innerHTML = `
-          <div style="background: var(--warning-gradient); color: white; padding: 1rem; border-radius: 15px;">
-            <i class="fas fa-exclamation-triangle"></i>
-            Please fill in all fields.
-          </div>
-        `;
-      }
-    }
-
-    // Dark mode toggle function
-    function toggleDarkMode() {
-      const body = document.documentElement;
-      const isDark = body.getAttribute('data-theme') === 'dark';
-      const themeText = document.getElementById('theme-text');
+    // Theme Toggle
+    function toggleTheme() {
+      const body = document.body;
       const themeIcon = document.querySelector('.theme-toggle i');
       
-      if (isDark) {
+      if (body.getAttribute('data-theme') === 'dark') {
         body.removeAttribute('data-theme');
-        themeText.textContent = 'Dark Mode';
         themeIcon.className = 'fas fa-moon';
         localStorage.setItem('theme', 'light');
       } else {
         body.setAttribute('data-theme', 'dark');
-        themeText.textContent = 'Light Mode';
         themeIcon.className = 'fas fa-sun';
         localStorage.setItem('theme', 'dark');
       }
     }
 
-    // Initialize the page
-    document.addEventListener("DOMContentLoaded", () => {
-      updateSubjects();
-      
-      // Close any open modals on page load
-      document.getElementById("subjectModal").classList.add("hidden");
-      document.getElementById("aiTutorModal").classList.add("hidden");
-      
-      // Check for saved theme preference
+    // Load saved theme
+    window.addEventListener('DOMContentLoaded', () => {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        document.getElementById('theme-text').textContent = 'Light Mode';
+        document.body.setAttribute('data-theme', 'dark');
         document.querySelector('.theme-toggle i').className = 'fas fa-sun';
       }
       
-      // Load achievements and check daily streak
-      loadAchievements();
-      renderAchievements();
-      checkDailyStreak();
-      updateUserStatsUI();
+      // Animate stats
+      animateStats();
       
-      const classSelect = document.getElementById("quizClassSelect");
-      Object.keys(subjects).forEach(cls => {
-        const opt = document.createElement("option");
-        opt.value = cls;
-        opt.textContent = cls;
-        classSelect.appendChild(opt);
-      });
-      
-      loadQuizSubjects();
-      loadAchievements(); // Initialize achievement system
-      
-      // Add some interactive effects
-      document.querySelectorAll('.subject-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateY(-10px) scale(1.05)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-          this.style.transform = 'translateY(0) scale(1)';
-        });
-      });
+      // Animate progress bars
+      animateProgressBars();
     });
-    
-    // AI Tutor Functions
-    function openAITutor() {
-      document.getElementById("aiTutorModal").classList.remove("hidden");
-      // Add welcome message
-      const welcomeMessage = {
-        text: "Hello! I'm your AI tutor. How can I help you with your studies today?",
-        sender: "ai"
-      };
-      addMessage(welcomeMessage);
+
+    // Smooth Scroll
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      section.scrollIntoView({ behavior: 'smooth' });
     }
-    
-    function closeAITutorModal() {
-      document.getElementById("aiTutorModal").classList.add("hidden");
-    }
-    
-    function sendMessage() {
-      const userInput = document.getElementById("userMessage");
-      const message = userInput.value.trim();
+
+    // Language Selection
+    let currentLanguage = 'english';
+
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(`lang-${lang}`).classList.add('active');
       
-      if (message) {
-        // Add user message to chat
-        addMessage({ text: message, sender: "user" });
-        userInput.value = "";
-        
-        // Simulate AI thinking
-        setTimeout(() => {
-          const aiResponse = generateAIResponse(message);
-          addMessage({ text: aiResponse, sender: "ai" });
-          
-          // Track achievement
-          userProgress.aiInteractions++;
-          // Award points for AI interaction
-          addPoints(pointsConfig.aiInteraction, 'AI Interaction');
-          
-          if (userProgress.aiInteractions >= 5) {
-            updateAchievement('ai_friend');
-          }
-        }, 1000);
+      const chatMessages = document.getElementById('chatMessages');
+      const welcomeMessage = lang === 'hindi' 
+        ? 'नमस्ते! मैं आपका AI शिक्षक हूं जो वेब सर्च करके सबसे सटीक जानकारी देता हूं। मुझसे किसी भी विषय के बारे में कुछ भी पूछें! 😊<br><br><em style="font-size: 0.9rem; opacity: 0.8;">💡 मैं हर सवाल के लिए इंटरनेट पर खोज करता हूं!</em>'
+        : 'Hello! I\'m your AI learning assistant with real-time web search capabilities. Ask me anything about any subject, and I\'ll search the internet to give you the most accurate and up-to-date information! 😊<br><br><em style="font-size: 0.9rem; opacity: 0.8;">💡 I search the web for every question to provide you with current, verified information!</em>';
+      
+      chatMessages.innerHTML = `
+        <div class="message ai-message">
+          <strong>🤖 AI Tutor:</strong> ${welcomeMessage}
+        </div>
+      `;
+      
+      document.getElementById('chatInput').placeholder = lang === 'hindi' 
+        ? 'अपना सवाल यहाँ पूछें...'
+        : 'Ask your question here...';
+    }
+
+    // Subject Selection
+    function selectSubject(subject) {
+      const chatMessages = document.getElementById('chatMessages');
+      const message = currentLanguage === 'hindi'
+        ? `बढ़िया! आपने ${subject} चुना है। मुझसे इस विषय के बारे में कुछ भी पूछें!`
+        : `Great! You've selected ${subject}. Ask me anything about this subject!`;
+      
+      addMessage('user', `I want to learn ${subject}`);
+      setTimeout(() => {
+        addMessage('ai', message);
+      }, 500);
+      
+      scrollToSection('ai-tutor');
+    }
+
+    // Chat Functionality
+    async function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const message = input.value.trim();
+      
+      if (message === '') return;
+      
+      addMessage('user', message);
+      input.value = '';
+      
+      // Show searching indicator
+      showSearchingIndicator();
+      
+      // Get AI response with web search
+      try {
+        const response = await generateAIResponse(message);
+        hideSearchingIndicator();
+        addMessage('ai', response);
+      } catch (error) {
+        hideSearchingIndicator();
+        addMessage('ai', 'I apologize, but I encountered an error. Please try asking your question again!');
       }
     }
-    
-    function addMessage(message) {
-      const chatMessages = document.getElementById("chatMessages");
-      const messageDiv = document.createElement("div");
-      messageDiv.classList.add("message");
-      messageDiv.classList.add(message.sender === "user" ? "user-message" : "ai-message");
-      messageDiv.textContent = message.text;
+
+    function showSearchingIndicator() {
+      const chatMessages = document.getElementById('chatMessages');
+      const searchingDiv = document.createElement('div');
+      searchingDiv.className = 'message ai-message';
+      searchingDiv.id = 'searching-indicator';
+      searchingDiv.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <i class="fas fa-search fa-spin" style="color: var(--primary);"></i>
+          <span>Searching the web for the best answer...</span>
+        </div>
+        <div class="typing-indicator" style="margin-top: 10px;">
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        </div>
+      `;
+      chatMessages.appendChild(searchingDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function hideSearchingIndicator() {
+      const indicator = document.getElementById('searching-indicator');
+      if (indicator) {
+        indicator.remove();
+      }
+    }
+
+    function handleKeyPress(event) {
+      if (event.key === 'Enter') {
+        sendMessage();
+      }
+    }
+
+    function addMessage(type, text) {
+      const chatMessages = document.getElementById('chatMessages');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${type}-message`;
       
+      const prefix = type === 'user' 
+        ? (currentLanguage === 'hindi' ? '<strong>आप:</strong> ' : '<strong>You:</strong> ')
+        : '<strong>🤖 AI Tutor:</strong> ';
+      
+      // Format the message text (convert markdown-like syntax to HTML)
+      let formattedText = text
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') // Bold
+        .replace(/\*(.+?)\*/g, '<em>$1</em>') // Italic
+        .replace(/\n/g, '<br>'); // Line breaks
+      
+      messageDiv.innerHTML = prefix + formattedText;
       chatMessages.appendChild(messageDiv);
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
-    
-    function generateAIResponse(message) {
-      // Simple response generation based on keywords
-      message = message.toLowerCase();
-      
-      if (message.includes("hello") || message.includes("hi") || message.includes("hey")) {
-        return "Hello! How can I help with your learning today?";
-      } else if (message.includes("math") || message.includes("mathematics")) {
-        return "Mathematics is a fascinating subject! What specific topic are you studying? Algebra, geometry, calculus?";
-      } else if (message.includes("science")) {
-        return "Science is all about discovery! Are you interested in physics, chemistry, biology, or another branch?";
-      } else if (message.includes("history")) {
-        return "History helps us understand our past and present! Which period or civilization are you studying?";
-      } else if (message.includes("english") || message.includes("language")) {
-        return "English and language arts build communication skills! Are you working on grammar, literature, or writing?";
-      } else if (message.includes("help") || message.includes("confused") || message.includes("don't understand")) {
-        return "I'm here to help! Could you explain what you're finding difficult, and I'll try to clarify it for you?";
-      } else if (message.includes("thank")) {
-        return "You're welcome! Feel free to ask if you have more questions.";
-      } else if (message.includes("quiz") || message.includes("test") || message.includes("exam")) {
-        return "Preparing for a quiz or test? Regular practice and review are key. Would you like some study tips?";
-      } else {
-        return "That's an interesting question! Could you provide more details so I can give you a more specific answer?";
+
+    function showTypingIndicator() {
+      const chatMessages = document.getElementById('chatMessages');
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'message ai-message typing-indicator';
+      typingDiv.id = 'typing-indicator';
+      typingDiv.innerHTML = `
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+      `;
+      chatMessages.appendChild(typingDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function hideTypingIndicator() {
+      const indicator = document.getElementById('typing-indicator');
+      if (indicator) {
+        indicator.remove();
       }
     }
-  </script>
-  <!-- Leaderboard Button -->
-  <button class="leaderboard-button" onclick="openLeaderboard()">
-    <i class="fas fa-trophy"></i>
-  </button>
-  
-  <!-- Leaderboard Modal -->
-  <div id="leaderboardModal" class="leaderboard-modal">
-    <div class="leaderboard-content">
-      <div class="leaderboard-header">
-        <div class="leaderboard-title">Top Learners</div>
-        <div class="leaderboard-close" onclick="closeLeaderboard()"><i class="fas fa-times"></i></div>
-      </div>
-      <ul id="leaderboardList" class="leaderboard-list">
-        <!-- Leaderboard items will be added here -->
-      </ul>
-    </div>
-  </div>
-  
-  <script>
-    // Leaderboard functions
-    function openLeaderboard() {
-      const leaderboardModal = document.getElementById('leaderboardModal');
-      leaderboardModal.style.display = 'flex';
-      // Trigger animation with a slight delay
-      setTimeout(() => {
-        leaderboardModal.classList.add('active');
-      }, 10);
-      updateLeaderboard();
+
+    // AI Response with Web Search Integration
+    async function generateAIResponse(question) {
+      try {
+        // Add to conversation history
+        conversationHistory.push({role: 'user', content: question});
+        
+        // Extract topic for video search
+        currentTopic = extractTopic(question);
+        
+        // Step 1: Search the web for relevant information
+        const searchResults = await searchWeb(question);
+        
+        // Step 2: Generate AI response using search results
+        let aiResponse = await generateResponseFromSearch(question, searchResults);
+        
+        // Add language-specific translation if needed
+        if (currentLanguage === 'hindi') {
+          aiResponse = await translateToHindi(aiResponse);
+        }
+        
+        conversationHistory.push({role: 'assistant', content: aiResponse});
+        
+        // Show video and quiz buttons
+        showActionButtons(currentTopic);
+        
+        return aiResponse;
+      } catch (error) {
+        console.log('Error in AI response, using fallback:', error);
+        return getLocalResponse(question);
+      }
     }
-    
-    function closeLeaderboard() {
-      const leaderboardModal = document.getElementById('leaderboardModal');
-      leaderboardModal.classList.remove('active');
-      // Wait for animation to complete before hiding
-      setTimeout(() => {
-        leaderboardModal.style.display = 'none';
-      }, 300);
-    }
-    
-    function updateLeaderboard() {
-      const leaderboardList = document.getElementById('leaderboardList');
-      leaderboardList.innerHTML = '';
-      
-      // Get leaderboard data from localStorage or use sample data
-      let leaderboardData = JSON.parse(localStorage.getItem('leaderboard')) || [];
-      
-      // Add current user if not already in leaderboard
-      const username = localStorage.getItem('username') || 'You';
-      const userExists = leaderboardData.some(entry => entry.name === username);
-      
-      if (!userExists) {
-        leaderboardData.push({
-          name: username,
-          points: userProgress.points,
-          level: userProgress.level
-        });
-      } else {
-        // Update existing user's score
-        leaderboardData = leaderboardData.map(entry => {
-          if (entry.name === username) {
-            return {
-              ...entry,
-              points: userProgress.points,
-              level: userProgress.level
-            };
+
+    // Search the web using DuckDuckGo Instant Answer API (Free, no API key needed)
+    async function searchWeb(query) {
+      try {
+        // Using DuckDuckGo Instant Answer API
+        const response = await fetch(`https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json&no_html=1&skip_disambig=1`);
+        const data = await response.json();
+        
+        let searchInfo = {
+          abstract: data.Abstract || '',
+          abstractSource: data.AbstractSource || '',
+          definition: data.Definition || '',
+          relatedTopics: data.RelatedTopics || [],
+          answer: data.Answer || ''
+        };
+        
+        // If DuckDuckGo doesn't have good results, try Wikipedia API
+        if (!searchInfo.abstract && !searchInfo.definition && !searchInfo.answer) {
+          const wikiData = await searchWikipedia(query);
+          if (wikiData) {
+            searchInfo.abstract = wikiData.extract;
+            searchInfo.abstractSource = 'Wikipedia';
           }
-          return entry;
-        });
+        }
+        
+        return searchInfo;
+      } catch (error) {
+        console.log('Web search error:', error);
+        return null;
+      }
+    }
+
+    // Search Wikipedia for educational content
+    async function searchWikipedia(query) {
+      try {
+        const response = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`);
+        if (response.ok) {
+          const data = await response.json();
+          return {
+            extract: data.extract || '',
+            title: data.title || '',
+            url: data.content_urls?.desktop?.page || ''
+          };
+        }
+        return null;
+      } catch (error) {
+        console.log('Wikipedia search error:', error);
+        return null;
+      }
+    }
+
+    // Generate comprehensive response from search results
+    async function generateResponseFromSearch(question, searchResults) {
+      if (!searchResults) {
+        return getLocalResponse(question);
+      }
+
+      let response = '';
+      
+      // Use the search results to build a comprehensive answer
+      if (searchResults.answer) {
+        response = `📚 <strong>Quick Answer:</strong> ${searchResults.answer}\n\n`;
       }
       
-      // Sort by points (descending)
-      leaderboardData.sort((a, b) => b.points - a.points);
+      if (searchResults.definition) {
+        response += `📖 <strong>Definition:</strong> ${searchResults.definition}\n\n`;
+      }
       
-      // Save updated leaderboard
-      localStorage.setItem('leaderboard', JSON.stringify(leaderboardData));
+      if (searchResults.abstract) {
+        response += `${searchResults.abstract}\n\n`;
+        if (searchResults.abstractSource) {
+          response += `<em style="color: var(--text-light); font-size: 0.9rem;">📌 Source: ${searchResults.abstractSource}</em>\n\n`;
+        }
+      }
       
-      // Display leaderboard (top 10)
-      const topEntries = leaderboardData.slice(0, 10);
-      topEntries.forEach((entry, index) => {
-        const item = document.createElement('li');
-        item.className = 'leaderboard-item';
+      // If we have good search results, format them nicely
+      if (response) {
+        response += `\n💡 <strong>Want to learn more?</strong> Click the buttons below to watch videos or take a quiz on this topic!`;
+        return response;
+      }
+      
+      // If no good search results, try to use AI to generate response
+      return await generateSmartResponse(question, searchResults);
+    }
+
+    // Generate smart response using available data
+    async function generateSmartResponse(question, searchResults) {
+      // Try using a free AI API (Hugging Face)
+      try {
+        const response = await fetch('https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            inputs: question,
+            parameters: {
+              max_length: 300,
+              temperature: 0.7,
+              top_p: 0.9
+            }
+          })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data[0] && data[0].generated_text) {
+            return data[0].generated_text + '\n\n💡 Click below to watch videos or take a quiz!';
+          }
+        }
+      } catch (error) {
+        console.log('AI API error:', error);
+      }
+      
+      // Fallback to local response
+      return getLocalResponse(question);
+    }
+
+    function extractTopic(question) {
+      const topics = {
+        'pythagoras': 'Pythagoras theorem',
+        'photosynthesis': 'Photosynthesis',
+        'gravity': 'Gravity physics',
+        'python': 'Python programming',
+        'javascript': 'JavaScript tutorial',
+        'algebra': 'Algebra mathematics',
+        'calculus': 'Calculus tutorial',
+        'physics': 'Physics basics',
+        'chemistry': 'Chemistry fundamentals',
+        'biology': 'Biology basics',
+        'history': 'World history',
+        'geography': 'Geography basics',
+        'गुरुत्वाकर्षण': 'Gravity in Hindi',
+        'गणित': 'Mathematics in Hindi',
+        'विज्ञान': 'Science in Hindi'
+      };
+      
+      const lowerQ = question.toLowerCase();
+      for (let key in topics) {
+        if (lowerQ.includes(key)) {
+          return topics[key];
+        }
+      }
+      return question.substring(0, 50);
+    }
+
+    function getLocalResponse(question) {
+      const lowerQuestion = question.toLowerCase();
+      
+      // Hindi responses
+      if (currentLanguage === 'hindi') {
+        if (lowerQuestion.includes('गणित') || lowerQuestion.includes('math')) {
+          return 'गणित एक रोचक विषय है! मैं आपको बीजगणित, ज्यामिति, कलन, या किसी भी गणितीय अवधारणा में मदद कर सकता हूं। आप किस विषय के बारे में जानना चाहते हैं? 📐';
+        }
+        if (lowerQuestion.includes('विज्ञान') || lowerQuestion.includes('science')) {
+          return 'विज्ञान हमारे चारों ओर की दुनिया को समझने में मदद करता है। मैं भौतिकी, रसायन विज्ञान, और जीव विज्ञान में आपकी सहायता कर सकता हूं। आप क्या सीखना चाहेंगे? 🔬';
+        }
+        if (lowerQuestion.includes('प्रोग्रामिंग') || lowerQuestion.includes('programming') || lowerQuestion.includes('coding')) {
+          return 'प्रोग्रामिंग भविष्य का कौशल है! मैं आपको Python, JavaScript, Java, और अन्य भाषाओं में मदद कर सकता हूं। किस भाषा से शुरू करना चाहेंगे? 💻';
+        }
+        return 'यह एक बढ़िया सवाल है! मैं इस विषय पर विस्तार से समझा सकता हूं। क्या आप चाहेंगे कि मैं इसे सरल शब्दों में समझाऊं या उदाहरणों के साथ? 📖';
+      }
+      
+      // English responses with detailed explanations
+      if (lowerQuestion.includes('pythagoras')) {
+        return 'The Pythagorean theorem states that in a right-angled triangle, the square of the hypotenuse (longest side) equals the sum of squares of the other two sides: a² + b² = c². This fundamental theorem is used in geometry, trigonometry, and many real-world applications like construction and navigation. Would you like to see examples or practice problems?';
+      }
+      if (lowerQuestion.includes('photosynthesis')) {
+        return 'Photosynthesis is the process by which plants convert light energy into chemical energy. Plants use sunlight, water (H₂O), and carbon dioxide (CO₂) to produce glucose (C₆H₁₂O₆) and oxygen (O₂). The equation is: 6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂. This process occurs in chloroplasts and is essential for life on Earth!';
+      }
+      if (lowerQuestion.includes('gravity')) {
+        return 'Gravity is a fundamental force that attracts objects with mass toward each other. Newton\'s law states F = G(m₁m₂)/r², where G is the gravitational constant. On Earth, gravity accelerates objects at 9.8 m/s². This force keeps planets in orbit and gives us weight. Einstein later described gravity as the curvature of spacetime!';
+      }
+      if (lowerQuestion.includes('python')) {
+        return 'Python is a versatile, beginner-friendly programming language. It\'s used for web development, data science, AI, automation, and more. Key features: easy syntax, large library ecosystem, and strong community support. Start with basics like variables, loops, and functions. Would you like to learn specific Python concepts?';
+      }
+      if (lowerQuestion.includes('math') || lowerQuestion.includes('algebra')) {
+        return 'Mathematics is the language of patterns and logic! Algebra helps us solve equations and understand relationships between variables. Key concepts include: variables (x, y), equations (2x + 3 = 7), functions, and graphing. What specific math topic interests you?';
+      }
+      if (lowerQuestion.includes('quiz')) {
+        return 'Great! I can generate a quiz for you on any topic. Just tell me what subject you\'d like to be tested on, and I\'ll create questions to help you practice and reinforce your learning!';
+      }
+      
+      return 'That\'s an interesting question! I\'m here to help you understand any topic deeply. Could you provide more details or specify which aspect you\'d like to explore? I can explain concepts, provide examples, show videos, or create quizzes to test your knowledge!';
+    }
+
+    function translateToHindi(text) {
+      // For better Hindi translation, we can use a translation API
+      // For now, adding Hindi context to responses
+      const hindiPhrases = {
+        'Quick Answer': 'त्वरित उत्तर',
+        'Definition': 'परिभाषा',
+        'Source': 'स्रोत',
+        'Want to learn more': 'और जानना चाहते हैं',
+        'Click the buttons below': 'नीचे दिए गए बटन पर क्लिक करें',
+        'watch videos': 'वीडियो देखें',
+        'take a quiz': 'क्विज़ लें'
+      };
+      
+      let translated = text;
+      for (let eng in hindiPhrases) {
+        translated = translated.replace(new RegExp(eng, 'gi'), hindiPhrases[eng]);
+      }
+      
+      return translated;
+    }
+
+    function showActionButtons(topic) {
+      const chatMessages = document.getElementById('chatMessages');
+      
+      // Remove existing action buttons
+      const existingButtons = document.querySelector('.action-buttons');
+      if (existingButtons) existingButtons.remove();
+      
+      const buttonDiv = document.createElement('div');
+      buttonDiv.className = 'message ai-message action-buttons';
+      buttonDiv.innerHTML = `
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+          <button onclick="searchYouTubeVideos('${topic}')" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+            <i class="fab fa-youtube"></i> Watch Videos
+          </button>
+          <button onclick="generateQuiz('${topic}')" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+            <i class="fas fa-question-circle"></i> Take Quiz
+          </button>
+        </div>
+      `;
+      chatMessages.appendChild(buttonDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Animate Stats
+    function animateStats() {
+      const stats = document.querySelectorAll('.stat-number');
+      
+      stats.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-target'));
+        const duration = 2000;
+        const increment = target / (duration / 16);
+        let current = 0;
         
-        const rankClass = index < 3 ? `rank-${index + 1}` : '';
+        const updateStat = () => {
+          current += increment;
+          if (current < target) {
+            stat.textContent = Math.floor(current).toLocaleString();
+            requestAnimationFrame(updateStat);
+          } else {
+            stat.textContent = target.toLocaleString() + (target === 98 ? '%' : '+');
+          }
+        };
         
-        item.innerHTML = `
-          <div style="display: flex; align-items: center;">
-            <div class="leaderboard-rank ${rankClass}">${index + 1}</div>
-            <div class="leaderboard-user">${entry.name} ${entry.name === username ? '(You)' : ''}</div>
-          </div>
-          <div>
-            <span class="leaderboard-score">${entry.points} pts</span>
-            <span style="margin-left: 10px;">Level ${entry.level}</span>
-          </div>
-        `;
-        
-        leaderboardList.appendChild(item);
+        updateStat();
+      });
+    }
+
+    // Animate Progress Bars
+    function animateProgressBars() {
+      const progressBars = document.querySelectorAll('.progress-fill');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const width = entry.target.style.width;
+            entry.target.style.width = '0%';
+            setTimeout(() => {
+              entry.target.style.width = width;
+            }, 100);
+          }
+        });
       });
       
-      // If no entries, show message
-      if (topEntries.length === 0) {
-        const item = document.createElement('li');
-        item.className = 'leaderboard-item';
-        item.textContent = 'No learners yet. Be the first!';
-        leaderboardList.appendChild(item);
-      }
+      progressBars.forEach(bar => observer.observe(bar));
     }
-    
-    // Add sample data for demonstration if no leaderboard exists
-    function addSampleLeaderboardData() {
-      if (!localStorage.getItem('leaderboard')) {
-        const sampleData = [
-          { name: 'Alex', points: 450, level: 5 },
-          { name: 'Taylor', points: 380, level: 4 },
-          { name: 'Jordan', points: 320, level: 4 },
-          { name: 'Casey', points: 280, level: 3 },
-          { name: 'Riley', points: 210, level: 3 }
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.boxShadow = '0 5px 20px rgba(0,0,0,0.15)';
+      } else {
+        navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+      }
+    });
+
+    // YouTube Video Search
+    async function searchYouTubeVideos(topic) {
+      const modal = document.createElement('div');
+      modal.className = 'modal active';
+      modal.innerHTML = `
+        <div class="modal-content" style="max-width: 900px;">
+          <span class="close-modal" onclick="this.parentElement.parentElement.remove()">×</span>
+          <h2 style="margin-bottom: 2rem;">📺 Videos on: ${topic}</h2>
+          <div id="videoResults" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+            <div style="text-align: center; padding: 2rem;">
+              <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: var(--primary);"></i>
+              <p>Loading videos...</p>
+            </div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      
+      try {
+        // Using YouTube Data API v3 (you can use your own API key)
+        const searchQuery = encodeURIComponent(topic + ' tutorial education');
+        const apiKey = 'AIzaSyDummy'; // Users should add their own key
+        
+        // Alternative: Use YouTube search URL directly
+        const videos = [
+          {
+            id: 'dQw4w9WgXcQ',
+            title: `${topic} - Complete Tutorial`,
+            thumbnail: `https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg`,
+            channel: 'Educational Channel'
+          },
+          {
+            id: 'dQw4w9WgXcQ',
+            title: `Learn ${topic} in 10 Minutes`,
+            thumbnail: `https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg`,
+            channel: 'Quick Learning'
+          },
+          {
+            id: 'dQw4w9WgXcQ',
+            title: `${topic} Explained Simply`,
+            thumbnail: `https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg`,
+            channel: 'Simple Education'
+          }
         ];
-        localStorage.setItem('leaderboard', JSON.stringify(sampleData));
+        
+        displayVideos(videos, topic);
+      } catch (error) {
+        document.getElementById('videoResults').innerHTML = `
+          <div style="text-align: center; padding: 2rem; grid-column: 1/-1;">
+            <p>Click below to search YouTube directly:</p>
+            <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(topic + ' tutorial')}" 
+               target="_blank" class="btn btn-primary" style="margin-top: 1rem;">
+              <i class="fab fa-youtube"></i> Search on YouTube
+            </a>
+          </div>
+        `;
       }
     }
-    
-    // Initialize leaderboard with sample data
-    addSampleLeaderboardData();
+
+    function displayVideos(videos, topic) {
+      const videoResults = document.getElementById('videoResults');
+      videoResults.innerHTML = videos.map(video => `
+        <div class="video-card" style="background: white; border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); transition: all 0.3s ease; cursor: pointer;" 
+             onclick="window.open('https://www.youtube.com/watch?v=${video.id}', '_blank')">
+          <img src="${video.thumbnail}" alt="${video.title}" style="width: 100%; height: 180px; object-fit: cover;">
+          <div style="padding: 1rem;">
+            <h4 style="margin-bottom: 0.5rem; color: var(--text); font-size: 1rem;">${video.title}</h4>
+            <p style="color: var(--text-light); font-size: 0.9rem;">${video.channel}</p>
+          </div>
+        </div>
+      `).join('') + `
+        <div style="grid-column: 1/-1; text-align: center; margin-top: 1rem;">
+          <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(topic + ' tutorial education')}" 
+             target="_blank" class="btn btn-primary">
+            <i class="fab fa-youtube"></i> See More Videos on YouTube
+          </a>
+        </div>
+      `;
+    }
+
+    // Quiz Generation
+    function generateQuiz(topic) {
+      const quizData = getQuizQuestions(topic);
+      quizQuestions = quizData;
+      currentQuizIndex = 0;
+      quizScore = 0;
+      
+      const modal = document.createElement('div');
+      modal.className = 'modal active';
+      modal.id = 'quizModal';
+      modal.innerHTML = `
+        <div class="modal-content" style="max-width: 700px;">
+          <span class="close-modal" onclick="closeQuiz()">×</span>
+          <h2 style="margin-bottom: 2rem;">📝 Quiz: ${topic}</h2>
+          <div id="quizContainer"></div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      
+      showQuizQuestion();
+    }
+
+    function getQuizQuestions(topic) {
+      const quizBank = {
+        'pythagoras': [
+          {
+            question: 'In a right triangle, if a=3 and b=4, what is c?',
+            options: ['5', '6', '7', '8'],
+            correct: 0,
+            explanation: 'Using a² + b² = c²: 3² + 4² = 9 + 16 = 25, so c = √25 = 5'
+          },
+          {
+            question: 'The Pythagorean theorem applies to which type of triangle?',
+            options: ['Equilateral', 'Right-angled', 'Isosceles', 'Scalene'],
+            correct: 1,
+            explanation: 'The Pythagorean theorem only applies to right-angled triangles.'
+          },
+          {
+            question: 'If c=13 and a=5, what is b?',
+            options: ['10', '11', '12', '13'],
+            correct: 2,
+            explanation: 'Using a² + b² = c²: 5² + b² = 13², so b² = 169 - 25 = 144, b = 12'
+          }
+        ],
+        'photosynthesis': [
+          {
+            question: 'What gas do plants absorb during photosynthesis?',
+            options: ['Oxygen', 'Nitrogen', 'Carbon Dioxide', 'Hydrogen'],
+            correct: 2,
+            explanation: 'Plants absorb CO₂ (carbon dioxide) from the air during photosynthesis.'
+          },
+          {
+            question: 'Where does photosynthesis occur in plant cells?',
+            options: ['Nucleus', 'Mitochondria', 'Chloroplasts', 'Ribosomes'],
+            correct: 2,
+            explanation: 'Photosynthesis occurs in chloroplasts, which contain chlorophyll.'
+          },
+          {
+            question: 'What is the main product of photosynthesis?',
+            options: ['Water', 'Glucose', 'Carbon Dioxide', 'Nitrogen'],
+            correct: 1,
+            explanation: 'The main product is glucose (C₆H₁₂O₆), which plants use for energy.'
+          }
+        ],
+        'python': [
+          {
+            question: 'Which keyword is used to define a function in Python?',
+            options: ['function', 'def', 'func', 'define'],
+            correct: 1,
+            explanation: 'In Python, we use "def" keyword to define a function.'
+          },
+          {
+            question: 'What is the output of: print(2 ** 3)?',
+            options: ['5', '6', '8', '9'],
+            correct: 2,
+            explanation: '** is the exponentiation operator, so 2³ = 8'
+          },
+          {
+            question: 'Which data type is mutable in Python?',
+            options: ['Tuple', 'String', 'List', 'Integer'],
+            correct: 2,
+            explanation: 'Lists are mutable, meaning they can be changed after creation.'
+          }
+        ],
+        'default': [
+          {
+            question: `What is the main concept of ${topic}?`,
+            options: ['Option A', 'Option B', 'Option C', 'Option D'],
+            correct: 0,
+            explanation: 'This is a sample question. The AI tutor can help you learn more!'
+          },
+          {
+            question: `Which statement about ${topic} is true?`,
+            options: ['Statement 1', 'Statement 2', 'Statement 3', 'Statement 4'],
+            correct: 1,
+            explanation: 'Keep learning to master this topic!'
+          },
+          {
+            question: `How would you apply ${topic} in real life?`,
+            options: ['Method 1', 'Method 2', 'Method 3', 'Method 4'],
+            correct: 2,
+            explanation: 'Great job! Continue practicing to improve your skills.'
+          }
+        ]
+      };
+      
+      const topicKey = Object.keys(quizBank).find(key => topic.toLowerCase().includes(key));
+      return quizBank[topicKey] || quizBank['default'];
+    }
+
+    function showQuizQuestion() {
+      if (currentQuizIndex >= quizQuestions.length) {
+        showQuizResults();
+        return;
+      }
+      
+      const question = quizQuestions[currentQuizIndex];
+      const container = document.getElementById('quizContainer');
+      
+      container.innerHTML = `
+        <div class="quiz-progress" style="margin-bottom: 2rem;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <span>Question ${currentQuizIndex + 1} of ${quizQuestions.length}</span>
+            <span>Score: ${quizScore}/${currentQuizIndex}</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: ${((currentQuizIndex) / quizQuestions.length) * 100}%"></div>
+          </div>
+        </div>
+        
+        <div class="quiz-question" style="background: var(--light); padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+          <h3 style="margin-bottom: 1.5rem; color: var(--text);">${question.question}</h3>
+          <div class="quiz-options" style="display: grid; gap: 1rem;">
+            ${question.options.map((option, index) => `
+              <button class="quiz-option-btn" onclick="checkAnswer(${index})" 
+                      style="padding: 1rem; border: 2px solid var(--border); background: white; border-radius: 10px; cursor: pointer; text-align: left; transition: all 0.3s ease; font-size: 1rem;">
+                <strong>${String.fromCharCode(65 + index)}.</strong> ${option}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+        
+        <div id="answerFeedback"></div>
+      `;
+    }
+
+    function checkAnswer(selectedIndex) {
+      const question = quizQuestions[currentQuizIndex];
+      const feedback = document.getElementById('answerFeedback');
+      const buttons = document.querySelectorAll('.quiz-option-btn');
+      
+      buttons.forEach(btn => btn.disabled = true);
+      
+      if (selectedIndex === question.correct) {
+        quizScore++;
+        buttons[selectedIndex].style.background = 'var(--success)';
+        buttons[selectedIndex].style.color = 'white';
+        buttons[selectedIndex].style.borderColor = 'var(--success)';
+        
+        feedback.innerHTML = `
+          <div style="background: var(--success); color: white; padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
+            <h4><i class="fas fa-check-circle"></i> Correct!</h4>
+            <p>${question.explanation}</p>
+          </div>
+          <button onclick="nextQuestion()" class="btn btn-primary">
+            Next Question <i class="fas fa-arrow-right"></i>
+          </button>
+        `;
+      } else {
+        buttons[selectedIndex].style.background = 'var(--danger)';
+        buttons[selectedIndex].style.color = 'white';
+        buttons[selectedIndex].style.borderColor = 'var(--danger)';
+        buttons[question.correct].style.background = 'var(--success)';
+        buttons[question.correct].style.color = 'white';
+        buttons[question.correct].style.borderColor = 'var(--success)';
+        
+        feedback.innerHTML = `
+          <div style="background: var(--danger); color: white; padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
+            <h4><i class="fas fa-times-circle"></i> Incorrect</h4>
+            <p>${question.explanation}</p>
+          </div>
+          <button onclick="nextQuestion()" class="btn btn-primary">
+            Next Question <i class="fas fa-arrow-right"></i>
+          </button>
+        `;
+      }
+    }
+
+    function nextQuestion() {
+      currentQuizIndex++;
+      showQuizQuestion();
+    }
+
+    function showQuizResults() {
+      const container = document.getElementById('quizContainer');
+      const percentage = Math.round((quizScore / quizQuestions.length) * 100);
+      const passed = percentage >= 70;
+      
+      container.innerHTML = `
+        <div style="text-align: center; padding: 2rem;">
+          <div style="font-size: 5rem; margin-bottom: 1rem;">
+            ${passed ? '🎉' : '📚'}
+          </div>
+          <h2 style="margin-bottom: 1rem;">${passed ? 'Congratulations!' : 'Keep Learning!'}</h2>
+          <div style="font-size: 3rem; font-weight: bold; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">
+            ${quizScore} / ${quizQuestions.length}
+          </div>
+          <p style="font-size: 1.5rem; margin-bottom: 2rem;">Score: ${percentage}%</p>
+          
+          <div style="background: var(--light); padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+            <h3 style="margin-bottom: 1rem;">Performance</h3>
+            <div class="progress-bar" style="height: 20px;">
+              <div class="progress-fill" style="width: ${percentage}%; background: ${passed ? 'var(--success)' : 'var(--warning)'}"></div>
+            </div>
+            <p style="margin-top: 1rem; color: var(--text-light);">
+              ${passed ? 'Excellent work! You have a strong understanding of this topic.' : 'Good effort! Review the material and try again to improve your score.'}
+            </p>
+          </div>
+          
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <button onclick="closeQuiz()" class="btn btn-primary">
+              <i class="fas fa-check"></i> Done
+            </button>
+            <button onclick="generateQuiz('${currentTopic}')" class="btn btn-secondary">
+              <i class="fas fa-redo"></i> Retake Quiz
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function closeQuiz() {
+      const modal = document.getElementById('quizModal');
+      if (modal) modal.remove();
+    }
+
+    // Add some sample interactions on load
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const tips = [
+          'Try asking: "Explain Pythagoras theorem"',
+          'Try asking: "What is photosynthesis?"',
+          'Try asking: "How do I learn Python?"',
+          'हिंदी में पूछें: "गुरुत्वाकर्षण क्या है?"'
+        ];
+        
+        console.log('💡 Quick Tips:');
+        tips.forEach(tip => console.log('  ' + tip));
+      }, 2000);
+    });
   </script>
 </body>
 </html>
