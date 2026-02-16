@@ -1,4 +1,6 @@
-# ✨ EduLearn - Complete Features Summary
+# ✨ Padh Lo India - Complete Features Summary
+
+## 🎯 Tagline: AI se seekho, future jeeto
 
 ## 🎯 Main Features
 
@@ -317,7 +319,7 @@ Result: Better understanding in native language!
 
 ---
 
-## 🎉 Why Choose EduLearn?
+## 🎉 Why Choose Padh Lo India?
 
 ### For Students
 ✅ Free forever
@@ -365,7 +367,7 @@ Result: Better understanding in native language!
 
 ## 🏆 Summary
 
-**EduLearn is a complete e-learning platform with:**
+**Padh Lo India is a complete e-learning platform with:**
 - 🌐 Web-powered AI that searches for accurate answers
 - 📺 YouTube video integration for visual learning
 - 📝 Interactive quizzes for practice
@@ -373,7 +375,7 @@ Result: Better understanding in native language!
 - 🎨 Beautiful, modern interface
 - 🆓 Completely free to use
 
-**Start learning smarter today! 🚀**
+**AI se seekho, future jeeto! 🚀**
 
 ---
 

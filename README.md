@@ -1,5 +1,5 @@
 <<<<<<< HEAD:e-learning website/README.md
-# 🎓 EduLearn - Smart E-Learning Platform
+# 🎓 Padh Lo India - AI se seekho, future jeeto
 
 A modern, interactive e-learning website with AI-powered tutoring, quiz system, and YouTube video integration.
 
@@ -201,7 +201,7 @@ Built with modern web technologies:
 
 **Happy Learning! 🎉**
 
-Start your educational journey today with EduLearn - where learning meets innovation!
+Start your educational journey today with Padh Lo India - AI se seekho, future jeeto!
 =======
 # E-Learning Website
 
